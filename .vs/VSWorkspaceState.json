@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Controllers",
+    "\\Views",
+    "\\Views\\Clientes",
+    "\\Views\\Cotizaciones",
+    "\\Views\\Home",
+    "\\Views\\Inventario",
+    "\\Views\\Ordenes",
+    "\\Views\\Shared",
+    "\\wwwroot",
+    "\\wwwroot\\css"
+  ],
+  "SelectedNode": "\\Views\\Inventario\\Nuevo.cshtml",
+  "PreviewInSolutionExplorer": false
+}

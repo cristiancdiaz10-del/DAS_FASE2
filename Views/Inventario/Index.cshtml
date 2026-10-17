@@ -1,0 +1,116 @@
+@{
+    ViewData["Title"] = "Inventario";
+}
+
+<style>
+    .header-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: #111827;
+        line-height: 1.2;
+    }
+
+    .page-subtitle {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+ 
+    .btn-primary-orange {
+        background-color: #f59e0b;
+        color: #ffffff !important;
+        border: none;
+        padding: 0.65rem 1.25rem;
+        border-radius: 0.5rem;
+        font-weight: 700;
+        font-size: 0.875rem;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .btn-primary-orange:hover {
+        background-color: #d97706;
+    }
+
+  
+    .card-panel {
+        background-color: #ffffff;
+        border-radius: 0.75rem;
+        padding: 2rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        border: 1px solid #e5e7eb;
+    }
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #ffffff;
+        margin-top: 1.5rem;
+    }
+
+    .data-table th {
+        background-color: #f9fafb;
+        color: #4b5563;
+        font-weight: 700;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        padding: 0.75rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .data-table td {
+        padding: 1rem;
+        font-size: 0.875rem;
+        color: #1f2937;
+        border-bottom: 1px solid #f3f4f6;
+    }
+</style>
+
+
+<div class="header-flex">
+    <div>
+        <h1 class="page-title">Inventario</h1>
+        <p class="page-subtitle">Control y gestión de materiales y suministros.</p>
+    </div>
+    <a asp-controller="Inventario" asp-action="Nuevo" class="btn-primary-orange">+ Nuevo material</a>
+</div>
+
+<div class="card-panel">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Material</th>
+                <th>Stock</th>
+                <th>Precio</th>
+                <th style="text-align: right;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>MAT-001</strong></td>
+                <td>Vinil autoadhesivo</td>
+                <td>45 rollos</td>
+                <td>$45.00</td>
+                <td style="text-align: right;">
+                    <a asp-controller="Inventario" asp-action="EditarMaterial" asp-route-id="MAT-004" class="btn-edit">
+    Editar
+</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

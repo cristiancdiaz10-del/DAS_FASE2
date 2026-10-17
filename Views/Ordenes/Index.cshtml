@@ -1,0 +1,284 @@
+﻿@{
+    ViewData["Title"] = "Órdenes de trabajo";
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+  
+    .header-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+
+    .header-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: #111827;
+        line-height: 1.2;
+    }
+
+    .page-subtitle {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+  
+    .btn-primary-orange {
+        background-color: #f59e0b;
+        color: #ffffff !important;
+        padding: 0.65rem 1.25rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.875rem;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+        white-space: nowrap;
+        transition: background-color 0.2s;
+    }
+
+    .btn-primary-orange:hover {
+        background-color: #d97706;
+    }
+
+   
+    .filters-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+    }
+
+    .search-box {
+        width: 100%;
+        max-width: 320px;
+        padding: 0.65rem 1rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        outline: none;
+        background-color: #ffffff;
+    }
+
+    .search-box:focus, .filter-select:focus {
+        border-color: #f59e0b;
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+    }
+
+    .filter-select {
+        width: 100%;
+        max-width: 220px;
+        padding: 0.65rem 1rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        color: #374151;
+        outline: none;
+        background-color: #ffffff;
+        cursor: pointer;
+    }
+
+    
+    .card-panel {
+        background-color: #ffffff;
+        border-radius: 0.75rem;
+        padding: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e5e7eb;
+    }
+
+    .card-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #111827;
+    }
+
+    
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.875rem;
+    }
+
+    .data-table th {
+        padding: 0.75rem 1rem;
+        font-weight: 700;
+        color: #111827;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .data-table td {
+        padding: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+        color: #374151;
+    }
+
+    .data-table tr:hover td {
+        background-color: #fafafa;
+    }
+
+   
+    .badge {
+        display: inline-block;
+        padding: 0.35rem 0.85rem;
+        border-radius: 9999px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-align: center;
+        min-width: 90px;
+    }
+
+    .badge-proceso {
+        background-color: #dbeafe;
+        color: #1d4ed8;
+    }
+
+    .badge-listo {
+        background-color: #dcfce7;
+        color: #15803d;
+    }
+
+    .badge-pendiente {
+        background-color: #fecaca;
+        color: #b91c1c;
+    }
+
+    
+    .action-links a {
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .action-links a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+
+<div class="header-flex">
+    <div class="header-text">
+        <h1 class="page-title">Órdenes de trabajo</h1>
+        <p class="page-subtitle">Consulta y controla el avance de los trabajos de Rótulos Ranibal.</p>
+    </div>
+    <a asp-controller="Home" asp-action="AgregarCotizacion" class="btn-primary-orange">+ Nueva orden</a>
+</div>
+
+
+<div class="filters-container">
+    <input type="text" id="inputBusqueda" class="search-box" placeholder="Buscar por código o cliente..." onkeyup="filtrarOrdenes()" />
+    <select id="selectEstado" class="filter-select" onchange="filtrarOrdenes()">
+        <option value="">Todos los estados</option>
+        <option value="En proceso">En proceso</option>
+        <option value="Listo">Listo</option>
+        <option value="Pendiente">Pendiente</option>
+    </select>
+</div>
+
+
+<div class="card-panel">
+    <h2 class="card-title">Órdenes registradas</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th style="text-align: center;">Estado</th>
+                <th style="text-align: right;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+           <tr>
+    <td><strong>OT-001</strong></td>
+    <td>
+        <a asp-controller="Clientes" asp-action="Detalle" asp-route-id="CL-001" class="btn-link">
+            Comercial ABC
+        </a>
+    </td>
+    <td>10/10/2026</td>
+    <td><strong>$350.00</strong></td>
+    <td><span class="badge badge-warning">En proceso</span></td>
+    <td style="text-align: right;">
+        <a asp-controller="Ordenes" asp-action="Detalle" asp-route-id="OT-001" class="btn-link">Ver detalle</a>
+    </td>
+</tr>
+
+<tr>
+    <td><strong>OT-002</strong></td>
+    <td>
+        <a asp-controller="Clientes" asp-action="Detalle" asp-route-id="CL-003" class="btn-link">
+            Negocio XYZ
+        </a>
+    </td>
+    <td>11/10/2026</td>
+    <td><strong>$180.00</strong></td>
+    <td><span class="badge badge-success">Listo</span></td>
+    <td style="text-align: right;">
+        <a asp-controller="Ordenes" asp-action="Detalle" asp-route-id="OT-002" class="btn-link">Ver detalle</a>
+    </td>
+</tr>
+
+<tr>
+    <td><strong>OT-003</strong></td>
+    <td>
+        <a asp-controller="Clientes" asp-action="Detalle" asp-route-id="CL-001" class="btn-link">
+            Cliente de prueba
+        </a>
+    </td>
+    <td>12/10/2026</td>
+    <td><strong>$95.00</strong></td>
+    <td><span class="badge badge-danger">Pendiente</span></td>
+    <td style="text-align: right;">
+        <a asp-controller="Ordenes" asp-action="Detalle" asp-route-id="OT-003" class="btn-link">Ver detalle</a>
+    </td>
+</tr>
+        </tbody>
+    </table>
+
+    <script>
+    function filtrarOrdenes() {
+        var textoBusqueda = document.getElementById("inputBusqueda").value.toLowerCase();
+        var estadoSeleccionado = document.getElementById("selectEstado").value.toLowerCase();
+        
+        var filas = document.querySelectorAll(".data-table tbody tr");
+        filas.forEach(function(fila) {
+            var celdaCodigo = fila.cells[0] ? fila.cells[0].textContent.toLowerCase() : "";
+            var celdaCliente = fila.cells[1] ? fila.cells[1].textContent.toLowerCase() : "";
+            var textoFila = celdaCodigo + " " + celdaCliente;
+            var textoCompletoFila = fila.textContent.toLowerCase();
+            var cumpleTexto = textoFila.includes(textoBusqueda);
+            var cumpleEstado = estadoSeleccionado === "" || textoCompletoFila.includes(estadoSeleccionado);
+
+           
+            if (cumpleTexto && cumpleEstado) {
+                fila.style.display = "";
+            } else {
+                fila.style.display = "none";
+            }
+        });
+    }
+</script>
+
+
+</div>

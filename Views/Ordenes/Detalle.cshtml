@@ -1,0 +1,364 @@
+﻿@{
+    ViewData["Title"] = "Detalle de orden";
+
+    var orden = ViewBag.Orden as Dictionary<string, string>;
+    
+    string badgeClass = "badge-proceso";
+    if (orden != null)
+    {
+        if (orden["Estado"] == "Listo") { badgeClass = "badge-listo"; }
+        else if (orden["Estado"] == "Pendiente") { badgeClass = "badge-pendiente"; }
+    }
+}
+
+@section Styles {
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .header-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #111827;
+            line-height: 1.2;
+        }
+
+        .page-subtitle {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .btn-back {
+            background-color: #ffffff;
+            color: #111827 !important;
+            border: 1px solid #e5e7eb;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            white-space: nowrap;
+            transition: background-color 0.2s;
+        }
+
+        .btn-back:hover {
+            background-color: #f9fafb;
+        }
+
+        .card-panel {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        .card-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .badge-proceso { background-color: #dbeafe; color: #1d4ed8; }
+        .badge-listo { background-color: #dcfce7; color: #15803d; }
+        .badge-pendiente { background-color: #fecaca; color: #b91c1c; }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-item label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-item span {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #e5e7eb;
+            margin: 2rem 0;
+        }
+
+        .timeline-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .timeline-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .timeline-content h4 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .timeline-content p {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background-color: #f59e0b;
+            color: #ffffff;
+            border: none;
+            padding: 0.85rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: #d97706;
+        }
+
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .modal-card {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+            outline: none;
+        }
+
+        .modal-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-cancel-modal {
+            background-color: #ffffff;
+            color: #374151;
+            border: 1px solid #d1d5db;
+            padding: 0.65rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+}
+
+<div class="header-flex">
+    <div class="header-text">
+        <h1 class="page-title">Detalle de orden @(orden != null ? orden["Codigo"] : "")</h1>
+        <p class="page-subtitle">Información del trabajo y seguimiento</p>
+    </div>
+    <a asp-controller="Ordenes" asp-action="Index" class="btn-back">← Volver a órdenes</a>
+</div>
+
+<div class="card-panel">
+    @if (orden != null)
+    {
+        <div class="card-header-row">
+            <h2 class="card-section-title">Información general</h2>
+            <span class="badge @badgeClass">@orden["Estado"]</span>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <label>Cliente</label>
+                <span>@orden["Cliente"]</span>
+            </div>
+            <div class="info-item">
+                <label>Fecha de registro</label>
+                <span>@orden["Fecha"]</span>
+            </div>
+            <div class="info-item">
+                <label>Trabajo</label>
+                <span>@orden["Trabajo"]</span>
+            </div>
+            <div class="info-item">
+                <label>Total del trabajo</label>
+                <span>@orden["Total"]</span>
+            </div>
+        </div>
+    }
+    else
+    {
+        <p style="color: #ef4444; font-weight: 600;">No se encontró información para esta orden.</p>
+    }
+
+    <hr class="divider" />
+
+    <h3 class="timeline-title">Seguimiento del trabajo</h3>
+
+    <div class="timeline-container">
+        <div class="timeline-step">
+            <div class="timeline-icon" style="color: #10b981;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <div class="timeline-content">
+                <h4>Recepción</h4>
+                <p>Orden registrada</p>
+            </div>
+        </div>
+
+        <div class="timeline-step">
+            <div class="timeline-icon" style="color: #f59e0b;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <div class="timeline-content">
+                <h4>En proceso</h4>
+                <p>Trabajo en fabricación</p>
+            </div>
+        </div>
+
+        <div class="timeline-step">
+            <div class="timeline-icon" style="color: #9ca3af;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <div class="timeline-content">
+                <h4>Listo</h4>
+                <p>Pendiente de completar</p>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn-submit" onclick="abrirModalEstado()">
+        Actualizar estado
+    </button>
+</div>
+
+<div id="modalEstado" class="modal-overlay" style="display: none;">
+    <div class="modal-card">
+        <h3 style="font-size: 1.15rem; font-weight: 800; color: #111827; margin-bottom: 0.5rem;">Actualizar estado de la orden</h3>
+        <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 1rem;">Selecciona el nuevo estado del trabajo para actualizar su seguimiento.</p>
+
+        <form asp-controller="Ordenes" asp-action="ActualizarEstado" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" value="@(orden != null ? orden["Codigo"] : "")" />
+
+            <label style="font-size: 0.85rem; font-weight: 700; color: #111827;">Nuevo Estado</label>
+            <select name="nuevoEstado" class="form-select" required>
+                <option value="En proceso">En proceso</option>
+                <option value="Listo">Listo</option>
+                <option value="Pendiente">Pendiente</option>
+            </select>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-cancel-modal" onclick="cerrarModalEstado()">Cancelar</button>
+                <button type="submit" class="btn-submit" style="padding: 0.65rem;">Guardar cambio</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function abrirModalEstado() {
+        document.getElementById('modalEstado').style.display = 'flex';
+    }
+
+    function cerrarModalEstado() {
+        document.getElementById('modalEstado').style.display = 'none';
+    }
+</script>
+
+@if (TempData["MensajeExito"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            mostrarNotificacion('@TempData["MensajeExito"]');
+        });
+    </script>
+}

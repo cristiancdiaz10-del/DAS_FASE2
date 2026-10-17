@@ -1,0 +1,258 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Inventario\\Nuevo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\Inventario\\Nuevo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Ordenes\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\Ordenes\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Shared\\_Layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\Shared\\_Layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\_ViewStart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\_ViewStart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Cotizaciones\\EditarCotizacion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\Cotizaciones\\EditarCotizacion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Controllers\\CotizacionesController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\CotizacionesController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Cotizaciones\\Cotizaciones.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\Cotizaciones\\Cotizaciones.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Cotizaciones\\AgregarCotizacion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\Cotizaciones\\AgregarCotizacion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Controllers\\HomeController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\HomeController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Clientes\\Detalle.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\Clientes\\Detalle.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Controllers\\OrdenesController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\OrdenesController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Controllers\\ClientesController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\ClientesController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Clientes\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\Clientes\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Clientes\\Crear.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\Clientes\\Crear.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Nuevo.cshtml",
+              "DocumentMoniker": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Inventario\\Nuevo.cshtml",
+              "RelativeDocumentMoniker": "Views\\Inventario\\Nuevo.cshtml",
+              "ToolTip": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Inventario\\Nuevo.cshtml",
+              "RelativeToolTip": "Views\\Inventario\\Nuevo.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-17T07:02:57.469Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-17T07:02:54.029Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-17T07:02:50.71Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-17T06:48:31.924Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CotizacionesController.cs",
+              "DocumentMoniker": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Controllers\\CotizacionesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CotizacionesController.cs",
+              "ToolTip": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Controllers\\CotizacionesController.cs",
+              "RelativeToolTip": "Controllers\\CotizacionesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-17T06:48:02.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EditarCotizacion.cshtml",
+              "DocumentMoniker": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Cotizaciones\\EditarCotizacion.cshtml",
+              "RelativeDocumentMoniker": "Views\\Cotizaciones\\EditarCotizacion.cshtml",
+              "ToolTip": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Cotizaciones\\EditarCotizacion.cshtml",
+              "RelativeToolTip": "Views\\Cotizaciones\\EditarCotizacion.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGIBAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-17T06:45:49.973Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AgregarCotizacion.cshtml",
+              "DocumentMoniker": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Cotizaciones\\AgregarCotizacion.cshtml",
+              "RelativeDocumentMoniker": "Views\\Cotizaciones\\AgregarCotizacion.cshtml",
+              "ToolTip": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Cotizaciones\\AgregarCotizacion.cshtml",
+              "RelativeToolTip": "Views\\Cotizaciones\\AgregarCotizacion.cshtml",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAFwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-17T06:37:07.444Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Cotizaciones.cshtml",
+              "DocumentMoniker": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Cotizaciones\\Cotizaciones.cshtml",
+              "RelativeDocumentMoniker": "Views\\Cotizaciones\\Cotizaciones.cshtml",
+              "ToolTip": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Cotizaciones\\Cotizaciones.cshtml",
+              "RelativeToolTip": "Views\\Cotizaciones\\Cotizaciones.cshtml",
+              "ViewState": "AgIAAMgAAAAAAAAAAAAAANsAAACIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-17T06:27:07.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Ordenes\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Ordenes\\Index.cshtml",
+              "ToolTip": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Ordenes\\Index.cshtml",
+              "RelativeToolTip": "Views\\Ordenes\\Index.cshtml",
+              "ViewState": "AgIAAOIAAAAAAAAAAAAAAOEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-17T06:22:08.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "OrdenesController.cs",
+              "DocumentMoniker": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Controllers\\OrdenesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\OrdenesController.cs",
+              "ToolTip": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Controllers\\OrdenesController.cs",
+              "RelativeToolTip": "Controllers\\OrdenesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-17T05:54:11.267Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ClientesController.cs",
+              "DocumentMoniker": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Controllers\\ClientesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ClientesController.cs",
+              "ToolTip": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Controllers\\ClientesController.cs",
+              "RelativeToolTip": "Controllers\\ClientesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEsAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-17T05:46:16.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Crear.cshtml",
+              "DocumentMoniker": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Clientes\\Crear.cshtml",
+              "RelativeDocumentMoniker": "Views\\Clientes\\Crear.cshtml",
+              "ToolTip": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Clientes\\Crear.cshtml",
+              "RelativeToolTip": "Views\\Clientes\\Crear.cshtml",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-17T05:45:29.882Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Detalle.cshtml",
+              "DocumentMoniker": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Clientes\\Detalle.cshtml",
+              "RelativeDocumentMoniker": "Views\\Clientes\\Detalle.cshtml",
+              "ToolTip": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Clientes\\Detalle.cshtml",
+              "RelativeToolTip": "Views\\Clientes\\Detalle.cshtml",
+              "ViewState": "AgIAANsAAAAAAAAAAAAswBABAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-17T05:44:29.939Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Clientes\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Clientes\\Index.cshtml",
+              "ToolTip": "C:\\Users\\samue\\Desktop\\Universidad Ciclo II 2026\\DAS Proyecto\\Views\\Clientes\\Index.cshtml",
+              "RelativeToolTip": "Views\\Clientes\\Index.cshtml",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAswL8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-17T05:38:50.068Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

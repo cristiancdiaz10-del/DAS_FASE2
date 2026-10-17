@@ -1,0 +1,259 @@
+﻿/* =========================================
+   RÓTULOS RANIBAL - AGREGAR INVENTARIO
+========================================= */
+
+:root {
+    --brand-orange: #F58220;
+    --brand-orange-hover: #D96E14;
+    --brand-dark: #18181B;
+    --brand-text: #27272A;
+    --brand-text-muted: #71717A;
+    --brand-border: #E4E4E7;
+    --brand-background: #F4F4F5;
+    --brand-white: #FFFFFF;
+}
+
+/* CONTENIDO PRINCIPAL */
+
+.add-inventory-page {
+    width: 100%;
+    color: var(--brand-dark);
+    font-family: 'Inter', sans-serif;
+}
+
+    .add-inventory-page *,
+    .add-inventory-page *::before,
+    .add-inventory-page *::after {
+        box-sizing: border-box;
+    }
+
+    /* ENCABEZADO */
+
+    .add-inventory-page .page-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 28px;
+    }
+
+        .add-inventory-page .page-heading h1 {
+            margin: 0 0 8px;
+            color: var(--brand-dark);
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: -0.7px;
+        }
+
+        .add-inventory-page .page-heading p {
+            margin: 0;
+            color: #52525B;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+    /* TARJETA DEL FORMULARIO */
+
+    .add-inventory-page .form-container {
+        width: 100%;
+        max-width: 900px;
+        padding: 32px;
+        background: var(--brand-white);
+        border: 1px solid rgba(228, 228, 231, 0.9);
+        border-radius: 14px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    /* DISTRIBUCIÓN DE CAMPOS */
+
+    .add-inventory-page .inventory-form {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px 24px;
+    }
+
+    .add-inventory-page .input-group {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        margin: 0;
+    }
+
+        .add-inventory-page .input-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* ETIQUETAS */
+
+        .add-inventory-page .input-group label {
+            display: block;
+            margin-bottom: 9px;
+            color: var(--brand-text);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* CAMPOS DE ENTRADA */
+
+        .add-inventory-page .input-group input,
+        .add-inventory-page .input-group select,
+        .add-inventory-page .input-group textarea {
+            display: block;
+            width: 100%;
+            min-height: 44px;
+            padding: 11px 13px;
+            color: #3F3F46;
+            background: #FFFFFF;
+            border: 1px solid var(--brand-border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 13px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .add-inventory-page .input-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+            .add-inventory-page .input-group input::placeholder,
+            .add-inventory-page .input-group textarea::placeholder {
+                color: #A1A1AA;
+            }
+
+            .add-inventory-page .input-group input:focus,
+            .add-inventory-page .input-group select:focus,
+            .add-inventory-page .input-group textarea:focus {
+                outline: none;
+                border-color: var(--brand-orange);
+                box-shadow: 0 0 0 3px rgba(245, 130, 32, 0.13);
+            }
+
+    /* TEXTO DE AYUDA */
+
+    .add-inventory-page .field-hint {
+        margin-top: 7px;
+        color: var(--brand-text-muted);
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    /* BOTONES */
+
+    .add-inventory-page .form-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+        padding-top: 24px;
+        border-top: 1px solid #F0F0F2;
+    }
+
+    .add-inventory-page .btn-primary,
+    .add-inventory-page .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 11px 19px;
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .add-inventory-page .btn-primary {
+        color: #FFFFFF;
+        background: var(--brand-orange);
+        border: 1px solid var(--brand-orange);
+    }
+
+        .add-inventory-page .btn-primary:hover {
+            color: #FFFFFF;
+            background: var(--brand-orange-hover);
+            border-color: var(--brand-orange-hover);
+        }
+
+    .add-inventory-page .btn-secondary {
+        color: #3F3F46;
+        background: #FFFFFF;
+        border: 1px solid var(--brand-border);
+    }
+
+        .add-inventory-page .btn-secondary:hover {
+            background: #F4F4F5;
+            border-color: #D4D4D8;
+        }
+
+        .add-inventory-page .btn-primary:active,
+        .add-inventory-page .btn-secondary:active {
+            transform: translateY(1px);
+        }
+
+    /* VALIDACIÓN Y MENSAJES */
+
+    .add-inventory-page .validation-message {
+        margin-top: 6px;
+        color: #B42318;
+        font-size: 12px;
+    }
+
+    .add-inventory-page .form-message {
+        margin-top: 16px;
+        color: #52525B;
+        font-size: 13px;
+    }
+
+/* DISEÑO RESPONSIVE */
+
+@media (max-width: 768px) {
+    .add-inventory-page .page-heading {
+        align-items: flex-start;
+    }
+
+        .add-inventory-page .page-heading h1 {
+            font-size: 26px;
+        }
+
+    .add-inventory-page .form-container {
+        padding: 24px;
+    }
+
+    .add-inventory-page .inventory-form {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 520px) {
+    .add-inventory-page .page-heading h1 {
+        font-size: 23px;
+    }
+
+    .add-inventory-page .form-container {
+        padding: 20px 16px;
+    }
+
+    .add-inventory-page .inventory-form {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .add-inventory-page .input-group.full-width {
+        grid-column: auto;
+    }
+
+    .add-inventory-page .form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+        .add-inventory-page .form-actions .btn-primary,
+        .add-inventory-page .form-actions .btn-secondary {
+            width: 100%;
+        }
+}

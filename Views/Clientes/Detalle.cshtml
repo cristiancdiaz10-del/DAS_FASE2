@@ -1,0 +1,273 @@
+@{
+    ViewData["Title"] = "Detalle del cliente";
+
+    var cliente = ViewBag.Cliente as Dictionary<string, string>;
+    var ordenes = ViewBag.Ordenes as List<Dictionary<string, string>>;
+}
+
+@section Styles {
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #111827;
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+
+        .page-subtitle {
+            color: #4b5563;
+            font-size: 0.875rem;
+        }
+
+        .btn-top-back {
+            background-color: #ffffff;
+            color: #111827;
+            border: 1px solid #e5e7eb;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-decoration: none;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background-color 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-top-back:hover {
+            background-color: #f9fafb;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            max-width: 550px;
+        }
+
+        .metric-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.75rem;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #111827;
+            line-height: 1;
+        }
+
+        .card-panel {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-section-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem 2rem;
+        }
+
+        .info-item label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-item span {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #111827;
+            display: block;
+        }
+
+        .info-item-full {
+            grid-column: span 2;
+        }
+
+        .orders-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .order-card {
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 1.25rem 1.5rem;
+            background-color: #ffffff;
+        }
+
+        .order-code {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #111827;
+        }
+
+        .order-desc {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.15rem;
+            margin-bottom: 1rem;
+        }
+
+        .order-total {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+        }
+
+        .order-link {
+            color: #f59e0b;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: color 0.2s;
+        }
+
+        .order-link:hover {
+            color: #d97706;
+        }
+
+        .text-muted {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+    </style>
+}
+
+<div class="header-flex">
+    <div>
+        <h1 class="page-title">Detalle del cliente</h1>
+        <p class="page-subtitle">Consulta la información y el historial de trabajos del cliente.</p>
+    </div>
+    <a asp-controller="Clientes" asp-action="Index" class="btn-top-back">
+        ← Volver a clientes
+    </a>
+</div>
+
+<div class="metrics-grid">
+    <div class="metric-card">
+        <div class="metric-label">Código</div>
+        <div class="metric-value">@cliente["Codigo"]</div>
+    </div>
+    <div class="metric-card">
+        <div class="metric-label">Órdenes registradas</div>
+        <div class="metric-value">@cliente["TotalOrdenes"]</div>
+    </div>
+</div>
+
+<div class="card-panel">
+    <h2 class="card-section-title">Información del cliente</h2>
+
+    <div class="info-grid">
+        <div class="info-item">
+            <label>Nombre del cliente</label>
+            <span>@cliente["Nombre"]</span>
+        </div>
+        <div class="info-item">
+            <label>Fecha de registro</label>
+            <span>@cliente["Fecha"]</span>
+        </div>
+
+        <div class="info-item">
+            <label>Teléfono</label>
+            <span>@cliente["Telefono"]</span>
+        </div>
+        <div class="info-item">
+            <label>Correo electrónico</label>
+            <span>@cliente["Correo"]</span>
+        </div>
+
+        <div class="info-item info-item-full">
+            <label>Dirección</label>
+            <span>@cliente["Direccion"]</span>
+        </div>
+
+        <div class="info-item info-item-full">
+            <label>Observaciones</label>
+            <span>@cliente["Observaciones"]</span>
+        </div>
+    </div>
+</div>
+
+<div class="card-panel">
+    <h2 class="card-section-title">Órdenes de trabajo del cliente</h2>
+
+    <div class="orders-list">
+        @if (ordenes != null && ordenes.Count > 0)
+        {
+            @foreach (var orden in ordenes)
+            {
+                <div class="order-card">
+                    <div class="order-code">@orden["Codigo"]</div>
+                    <div class="order-desc">@orden["Trabajo"]</div>
+                    <div class="order-total">Total: @orden["Total"]</div>
+                    <a asp-controller="Ordenes" asp-action="Detalle" asp-route-id="@orden["Codigo"]" class="order-link">
+                        Ver detalle de orden →
+                    </a>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-muted">Este cliente aún no registra órdenes de trabajo activas.</p>
+        }
+    </div>
+</div>
+
+@if (TempData["MensajeExito"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof mostrarNotificacion === 'function') {
+                mostrarNotificacion('@TempData["MensajeExito"]');
+            }
+        });
+    </script>
+}

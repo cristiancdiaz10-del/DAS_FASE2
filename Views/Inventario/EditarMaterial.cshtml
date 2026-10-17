@@ -1,0 +1,243 @@
+@{
+    ViewData["Title"] = "Editar material";
+}
+
+@section Styles {
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #111827;
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+
+        .page-subtitle {
+            color: #4b5563;
+            font-size: 0.875rem;
+        }
+
+        .btn-top-back {
+            background-color: #ffffff;
+            color: #111827;
+            border: 1px solid #e5e7eb;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-decoration: none;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background-color 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-top-back:hover {
+            background-color: #f9fafb;
+        }
+
+        .card-panel {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 2.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        .card-section-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-section-desc {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .form-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: #374151;
+            outline: none;
+            background-color: #ffffff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .btn-cancel {
+            display: block;
+            width: 100%;
+            background-color: #ffffff;
+            color: #111827;
+            border: 1px solid #d1d5db;
+            padding: 0.85rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-cancel:hover {
+            background-color: #f9fafb;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background-color: #f59e0b;
+            color: #ffffff;
+            border: none;
+            padding: 0.85rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: #d97706;
+        }
+    </style>
+}
+
+<div class="header-flex">
+    <div>
+        <h1 class="page-title">Editar material</h1>
+        <p class="page-subtitle">Edita el registro de los materiales utilizados en la fabricación de rótulos y actualiza el inventario disponible.</p>
+    </div>
+    <a asp-controller="Inventario" asp-action="Index" class="btn-top-back">
+        ← Volver a inventario
+    </a>
+</div>
+
+<div class="card-panel">
+    <h3 class="card-section-title">Información del material</h3>
+    <p class="card-section-desc">Los campos marcados como obligatorios deben completarse[cite: 3].</p>
+
+    <form asp-controller="Inventario" asp-action="ActualizarMaterial" method="post">
+        @Html.AntiForgeryToken()
+        
+        <input type="hidden" name="Id" value="MAT-004" />
+
+        <div class="form-grid-2">
+            <div class="form-group" style="margin-bottom: 0;">
+                <label for="material">Nombre del material *</label>
+                <input type="text" id="material" name="material" value="Lámina acrílica" class="form-control" required />
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+                <label for="codigo">Código del material *</label>
+                <input type="text" id="codigo" name="codigo" value="MAT-004" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="form-grid-2" style="margin-top: 1.25rem;">
+            <div class="form-group">
+                <label for="existencias">Cantidad inicial *</label>
+                <input type="number" id="existencias" name="existencias" min="0" value="25" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="unidad">Unidad de medida *</label>
+                <select id="unidad" name="unidad" class="form-control" required>
+                    <option value="">Seleccionar unidad...</option>
+                    <option value="Unidad" selected>Unidad</option>
+                    <option value="Metro">Metro</option>
+                    <option value="Rollo">Rollo</option>
+                    <option value="Litro">Litro</option>
+                    <option value="Kilogramo">Kilogramo</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group" style="max-width: 50%;">
+            <label for="costo">Costo unitario ($)</label>
+            <input type="number" step="0.01" id="costo" name="costo" value="0.00" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" name="descripcion" class="form-control">Descripción breve del material</textarea>
+        </div>
+
+        <div class="form-actions">
+            <a asp-controller="Inventario" asp-action="Index" class="btn-cancel">Cancelar</a>
+            <button type="submit" class="btn-submit">Guardar material</button>
+        </div>
+    </form>
+</div>
+
+
+@if (TempData["MensajeExito"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            mostrarNotificacion('@TempData["MensajeExito"]');
+        });
+    </script>
+}

@@ -1,0 +1,320 @@
+﻿@{
+    ViewData["Title"] = "Gestión de pagos";
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .header-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+
+    .header-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: #111827;
+        line-height: 1.2;
+    }
+
+    .page-subtitle {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    
+    .btn-primary-orange {
+        background-color: #f59e0b;
+        color: #ffffff !important;
+        padding: 0.65rem 1.25rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.875rem;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+        white-space: nowrap;
+        transition: background-color 0.2s;
+    }
+
+    .btn-primary-orange:hover {
+        background-color: #d97706;
+    }
+
+    
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background-color: #ffffff;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e5e7eb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .stat-info span {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #6b7280;
+        margin-bottom: 0.35rem;
+    }
+
+    .stat-info h3 {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: #111827;
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        color: #f59e0b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    
+    .filter-container {
+        margin-bottom: 2rem;
+    }
+
+    .filter-select {
+        width: 100%;
+        max-width: 180px;
+        padding: 0.65rem 1rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        color: #374151;
+        outline: none;
+        background-color: #ffffff;
+        cursor: pointer;
+    }
+
+    .filter-select:focus {
+        border-color: #f59e0b;
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+    }
+
+ 
+    .card-panel {
+        background-color: #ffffff;
+        border-radius: 0.75rem;
+        padding: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e5e7eb;
+    }
+
+    .card-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #111827;
+    }
+
+   
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.875rem;
+    }
+
+    .data-table th {
+        padding: 0.75rem 1rem;
+        font-weight: 700;
+        color: #111827;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .data-table td {
+        padding: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+        color: #374151;
+    }
+
+    .data-table tr:hover td {
+        background-color: #fafafa;
+    }
+
+    .action-links a {
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .action-links a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+
+<div class="header-flex">
+    <div class="header-text">
+        <h1 class="page-title">Gestión de pagos</h1>
+        <p class="page-subtitle">Consulta los pagos registrados y controla los saldos pendientes de las órdenes.</p>
+    </div>
+    <a asp-controller="Pagos" asp-action="RegistrarPago" class="btn-primary-orange">+ Registrar pago</a>
+</div>
+
+
+<div class="stats-grid">
+   
+    <div class="stat-card">
+        <div class="stat-info">
+            <span>Pagos registrados</span>
+            <h3>$1,250.00</h3>
+        </div>
+        <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
+            </svg>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-info">
+            <span>Anticipos</span>
+            <h3>$800.00</h3>
+        </div>
+        <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+            </svg>
+        </div>
+    </div>
+
+    
+    <div class="stat-card">
+        <div class="stat-info">
+            <span>Saldos pendientes</span>
+            <h3>$600.00</h3>
+        </div>
+        <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </div>
+    </div>
+</div>
+
+<div class="filter-container">
+    <select id="filtroTipo" class="filter-select" onchange="filtrarPagos()">
+        <option value="">Filtros (Todos)</option>
+        <option value="Anticipo">Anticipo</option>
+        <option value="Saldo final">Saldo final</option>
+    </select>
+</div>
+
+<div class="card-panel">
+    <h2 class="card-title">Pagos registrados</h2>
+
+   <table class="data-table">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Orden</th>
+            <th>Cliente</th>
+            <th>Monto pagado</th>
+            <th>Tipo</th>
+            <th>Fecha</th>
+            <th style="text-align: right;">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>PAG-001</strong></td>
+            <td>OT-001</td>
+            <td>Comercial ABC</td>
+            <td><strong>$175.00</strong></td>
+            <td>Anticipo</td>
+            <td>10/10/2026</td>
+            <td class="action-links" style="text-align: right;">
+                <a asp-controller="Pagos" asp-action="DetallesPago" asp-route-id="PAG-001">Ver detalle</a>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>PAG-002</strong></td>
+            <td>OT-002</td>
+            <td>Negocio XYZ</td>
+            <td><strong>$180.00</strong></td>
+            <td>Saldo final</td>
+            <td>11/10/2026</td>
+            <td class="action-links" style="text-align: right;">
+                <a asp-controller="Pagos" asp-action="DetallesPago" asp-route-id="PAG-002">Ver detalle</a>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>PAG-003</strong></td>
+            <td>OT-003</td>
+            <td>Cliente de prueba</td>
+            <td><strong>$95.00</strong></td>
+            <td>Saldo final</td>
+            <td>12/09/2026</td>
+            <td class="action-links" style="text-align: right;">
+                <a asp-controller="Pagos" asp-action="DetallesPago" asp-route-id="PAG-003">Ver detalle</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    function filtrarPagos() {
+        var select = document.getElementById("filtroTipo");
+        var filtro = select.value.toLowerCase();
+        var filas = document.querySelectorAll(".data-table tbody tr");
+
+        filas.forEach(function(fila) {
+         
+            var celdaTipo = fila.cells[4]; 
+            if (celdaTipo) {
+                var textoTipo = celdaTipo.textContent || celdaTipo.innerText;
+                
+            
+                if (filtro === "" || textoTipo.toLowerCase().includes(filtro)) {
+                    fila.style.display = "";
+                } else {
+                    fila.style.display = "none"; 
+                }
+            }
+        });
+    }
+</script>
+
+
+@if (TempData["MensajeExito"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            mostrarNotificacion('@TempData["MensajeExito"]');
+        });
+    </script>
+}
+
+
+</div>
