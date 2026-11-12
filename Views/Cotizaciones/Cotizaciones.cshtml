@@ -167,7 +167,7 @@
         <h1 class="page-title">Gestión de cotizaciones</h1>
         <p class="page-subtitle">Prepara presupuestos y consulta las cotizaciones de los clientes.</p>
     </div>
-    <a asp-controller="Home" asp-action="AgregarCotizacion" class="btn-primary-orange">+ Nueva cotización</a>
+    <a asp-controller="Cotizaciones" asp-action="AgregarCotizacion" class="btn-primary-orange">+ Nueva cotización</a>
 </div>
 
 <div class="filters-container">
@@ -175,9 +175,9 @@
     
     <select class="filter-select">
         <option value="">Todos los estados</option>
-        <option value="proceso">En proceso</option>
-        <option value="listo">Listo</option>
         <option value="pendiente">Pendiente</option>
+        <option value="aceptada">Aceptada</option>
+        <option value="rechazada">Rechazada</option>
     </select>
 </div>
 
@@ -202,7 +202,7 @@
                 <td>10/10/2026</td>
                 <td><strong>$350.00</strong></td>
                 <td style="text-align: center;">
-                    <span class="badge badge-blue">En proceso</span>
+                    <span class="badge badge-blue">Pendiente</span>
                 </td>
                 <td style="text-align: right;">
                     <a asp-controller="Cotizaciones" asp-action="EditarCotizacion" asp-route-id="COT-001" class="action-link">Editar</a>
@@ -214,7 +214,7 @@
                 <td>11/10/2026</td>
                 <td><strong>$180.00</strong></td>
                 <td style="text-align: center;">
-                    <span class="badge badge-green">Listo</span>
+                    <span class="badge badge-green">Aceptada</span>
                 </td>
                 <td style="text-align: right;">
                     <a asp-controller="Cotizaciones" asp-action="EditarCotizacion" asp-route-id="COT-002" class="action-link">Editar</a>
@@ -226,7 +226,7 @@
                 <td>12/10/2026</td>
                 <td><strong>$95.00</strong></td>
                 <td style="text-align: center;">
-                    <span class="badge badge-red">Pendiente</span>
+                   <span class="badge badge-red">Rechazada</span>
                 </td>
                 <td style="text-align: right;">
                     <a asp-controller="Cotizaciones" asp-action="EditarCotizacion" asp-route-id="COT-003" class="action-link">Editar</a>

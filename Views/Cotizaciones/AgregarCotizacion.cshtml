@@ -216,13 +216,13 @@
         <h1 class="page-title">Nueva cotización</h1>
         <p class="page-subtitle">Información del presupuesto.</p>
     </div>
-    <a asp-controller="Home" asp-action="Cotizaciones" class="btn-top-back">
+    <a asp-controller="Cotizaciones" asp-action="Cotizaciones" class="btn-top-back">
         ← Volver a cotización
     </a>
 </div>
 
 <div class="card-panel">
-    <form asp-controller="Home" asp-action="AgregarCotizacion" method="post">
+    <form asp-controller="Cotizaciones" asp-action="AgregarCotizacion" method="post">
         @Html.AntiForgeryToken()
 
         <div class="form-group">
@@ -303,7 +303,7 @@
         </div>
 
         <div class="form-actions">
-            <a asp-controller="Home" asp-action="Cotizaciones" class="btn-cancel">Cancelar</a>
+            <a asp-controller="Cotizaciones" asp-action="Cotizaciones" class="btn-cancel">Cancelar</a>
             <button type="submit" class="btn-submit">Guardar cotización</button>
         </div>
     </form>
