@@ -1,0 +1,91 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+
+<div class="mb-8">
+    <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">Dashboard</h2>
+    <p class="text-gray-600 font-semibold mt-1">Resumen general del negocio</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+    
+    
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-36">
+        <h3 class="text-sm font-bold text-gray-800">Órdenes registradas</h3>
+        <span class="text-4xl font-extrabold text-gray-900">24</span>
+        <span class="text-xs text-gray-400 font-medium">Total de órdenes</span>
+    </div>
+
+    
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-36">
+        <h3 class="text-sm font-bold text-gray-800">En proceso</h3>
+        <span class="text-4xl font-extrabold text-gray-900">8</span>
+        <span class="text-xs text-gray-400 font-medium">Órdenes en producción</span>
+    </div>
+
+   
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-36">
+        <h3 class="text-sm font-bold text-gray-800">Cotizaciones pendientes</h3>
+        <span class="text-4xl font-extrabold text-gray-900">6</span>
+        <span class="text-xs text-gray-400 font-medium">Esperando respuesta</span>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-36">
+        <h3 class="text-sm font-bold text-gray-800">Ventas del mes</h3>
+        <span class="text-3xl font-extrabold text-gray-900">$2,450.00</span>
+        <span class="text-xs text-gray-400 font-medium">Ingresos registrados</span>
+    </div>
+
+</div>
+
+
+<div>
+    <h3 class="text-base font-bold text-gray-900 mb-4">Órdenes recientes</h3>
+
+    
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="text-gray-900 font-bold text-sm">
+                    <th class="py-4 px-8">Código</th>
+                    <th class="py-4 px-8">Cliente</th>
+                    <th class="py-4 px-8 text-right">Estado</th>
+                </tr>
+            </thead>
+            <tbody class="text-sm font-medium text-gray-800">
+             
+                <tr>
+                    <td class="py-4 px-8 font-bold">OT-001</td>
+                    <td class="py-4 px-8 font-semibold">Comercial ABC</td>
+                    <td class="py-4 px-8 text-right">
+                        <span class="bg-blue-100 text-blue-600 px-4 py-1.5 rounded-full text-xs font-semibold inline-block">
+                            En proceso
+                        </span>
+                    </td>
+                </tr>
+              
+                <tr>
+                    <td class="py-4 px-8 font-bold">OT-002</td>
+                    <td class="py-4 px-8 font-semibold">Cliente Ejemplo</td>
+                    <td class="py-4 px-8 text-right">
+                        <span class="bg-emerald-200 text-emerald-800 px-4 py-1.5 rounded-full text-xs font-semibold inline-block">
+                            Listo
+                        </span>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="py-4 px-8 font-bold">OT-003</td>
+                    <td class="py-4 px-8 font-semibold">Negocio XYZ</td>
+                    <td class="py-4 px-8 text-right">
+                        <span class="bg-red-200 text-red-700 px-4 py-1.5 rounded-full text-xs font-semibold inline-block">
+                            Pendiente
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

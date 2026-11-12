@@ -1,0 +1,248 @@
+
+@model DAS_Proyecto.ViewModels.InformeMensualViewModel
+
+@{
+    ViewData["Title"] = "Informe mensual";
+
+    string[] meses =
+    {
+        "Enero", "Febrero", "Marzo", "Abril",
+        "Mayo", "Junio", "Julio", "Agosto",
+        "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    };
+}
+
+<style>
+    .informe-container {
+        padding: 25px;
+        color: #111827;
+    }
+
+    .informe-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .informe-title {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin-bottom: 5px;
+    }
+
+    .informe-subtitle {
+        color: #6b7280;
+        font-size: .9rem;
+    }
+
+    .filtro-card, .indicador-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        box-shadow: 0 2px 5px rgba(0,0,0,.04);
+    }
+
+    .filtro-card {
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+
+    .filtro-card label {
+        font-weight: 700;
+        font-size: .85rem;
+        margin-bottom: 8px;
+    }
+
+    .filtro-card select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #d1d5db;
+        border-radius: 7px;
+        background: white;
+    }
+
+    .btn-informe {
+        background: #f59e0b;
+        color: white;
+        border: none;
+        border-radius: 7px;
+        padding: 11px 20px;
+        font-weight: 700;
+        width: 100%;
+    }
+
+    .btn-informe:hover {
+        background: #d97706;
+        color: white;
+    }
+
+    .indicador-card {
+        padding: 25px;
+        height: 100%;
+    }
+
+    .indicador-label {
+        color: #6b7280;
+        font-size: .9rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+    }
+
+    .indicador-valor {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #111827;
+        margin: 0;
+    }
+
+    .indicador-icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 10px;
+        background: #fff7ed;
+        color: #f59e0b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+    }
+
+    .periodo-texto {
+        margin-top: 25px;
+        padding: 15px 20px;
+        background: #fff7ed;
+        border-left: 4px solid #f59e0b;
+        border-radius: 7px;
+        color: #92400e;
+    }
+
+    .nota-informe {
+        margin-top: 20px;
+        color: #6b7280;
+        font-size: .85rem;
+    }
+
+    @@media (max-width: 600px) {
+        .informe-container {
+            padding: 15px;
+        }
+
+        .indicador-valor {
+            font-size: 1.6rem;
+        }
+    }
+</style>
+
+<div class="informe-container">
+
+    <div class="informe-header">
+        <div>
+            <h1 class="informe-title">Informe mensual</h1>
+            <p class="informe-subtitle">
+                Resumen de ingresos y pedidos registrados en Rótulos Ranibal.
+            </p>
+        </div>
+    </div>
+
+    <!-- Filtro de periodo -->
+    <div class="filtro-card">
+        <form asp-controller="Informes"
+              asp-action="Mensual"
+              method="get">
+
+            <div class="row align-items-end g-3">
+
+                <div class="col-md-5">
+                    <label for="mes">Mes</label>
+                    <select id="mes" name="mes">
+                        @for (int i = 0; i < meses.Length; i++)
+                        {
+                            <option value="@(i + 1)"
+                                    selected="@(Model.Mes == i + 1)">
+                                @meses[i]
+                            </option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="anio">Año</label>
+                    <select id="anio" name="anio">
+                        @for (int anio = DateTime.Today.Year - 5;
+                              anio <= DateTime.Today.Year + 1;
+                              anio++)
+                        {
+                            <option value="@anio"
+                                    selected="@(Model.Anio == anio)">
+                                @anio
+                            </option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <button type="submit" class="btn-informe">
+                        Consultar informe
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <!-- Indicadores -->
+    <div class="row g-4">
+
+        <div class="col-md-6">
+            <div class="indicador-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="indicador-label">Ingresos totales</p>
+                        <h2 class="indicador-valor">
+                            $@Model.TotalIngresos.ToString("N2")
+                        </h2>
+                    </div>
+
+                    <div class="indicador-icon">
+                        $
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="indicador-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="indicador-label">Cantidad de pedidos</p>
+                        <h2 class="indicador-valor">
+                            @Model.CantidadPedidos
+                        </h2>
+                    </div>
+
+                    <div class="indicador-icon">
+                        #
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Periodo consultado -->
+    <div class="periodo-texto">
+        <strong>Periodo consultado:</strong>
+        @(Model.Mes >= 1 && Model.Mes <= 12
+    ? meses[Model.Mes - 1]
+    : "Mes no válido") de @Model.Anio
+    </div>
+
+    <p class="nota-informe">
+        Los indicadores mostrarán los resultados reales cuando se conecten
+        las consultas con la base de datos.
+    </p>
+
+</div>

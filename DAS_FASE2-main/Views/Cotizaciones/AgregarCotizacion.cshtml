@@ -1,0 +1,338 @@
+@{
+    ViewData["Title"] = "Nueva cotización";
+}
+
+@section Styles {
+    <style>
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #111827;
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+
+        .page-subtitle {
+            color: #4b5563;
+            font-size: 0.875rem;
+        }
+
+        .btn-top-back {
+            background-color: #ffffff;
+            color: #111827;
+            border: 1px solid #e5e7eb;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-decoration: none;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background-color 0.2s;
+        }
+
+        .btn-top-back:hover {
+            background-color: #f9fafb;
+        }
+
+        .card-panel {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 2.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.25rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: #374151;
+            outline: none;
+            background-color: #ffffff;
+        }
+
+        .form-control:focus {
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .cost-table th, .cost-table td {
+            padding: 0.75rem 0;
+            font-size: 0.875rem;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: middle;
+        }
+
+        .cost-table th {
+            color: #4b5563;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .cost-table td:last-child, .cost-table th:last-child {
+            text-align: right;
+        }
+
+ 
+        .input-monto-wrapper {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            background: #f9fafb;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            padding: 0.2rem 0.5rem;
+        }
+
+        .input-monto-wrapper:focus-within {
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.15);
+            background: #ffffff;
+        }
+
+        .input-monto {
+            width: 80px;
+            border: none;
+            background: transparent;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #111827;
+            outline: none;
+            text-align: right;
+        }
+
+        .total-row td {
+            font-weight: 800;
+            font-size: 1rem;
+            color: #111827;
+            border-bottom: none !important;
+            padding-top: 1rem !important;
+        }
+
+        .form-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .btn-cancel {
+            display: block;
+            width: 100%;
+            background-color: #ffffff;
+            color: #111827;
+            border: 1px solid #d1d5db;
+            padding: 0.85rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-cancel:hover {
+            background-color: #f9fafb;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background-color: #f59e0b;
+            color: #ffffff;
+            border: none;
+            padding: 0.85rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: #d97706;
+        }
+    </style>
+}
+
+<div class="header-flex">
+    <div>
+        <h1 class="page-title">Nueva cotización</h1>
+        <p class="page-subtitle">Información del presupuesto.</p>
+    </div>
+    <a asp-controller="Home" asp-action="Cotizaciones" class="btn-top-back">
+        ← Volver a cotización
+    </a>
+</div>
+
+<div class="card-panel">
+    <form asp-controller="Home" asp-action="AgregarCotizacion" method="post">
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label for="cliente">Cliente</label>
+            <select id="cliente" name="cliente" class="form-control" required>
+                <option value="">Seleccionar cliente...</option>
+                <option value="Comercial ABC">Comercial ABC</option>
+                <option value="Negocio XYZ">Negocio XYZ</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="fecha">Fecha de cotización</label>
+            <input type="date" id="fecha" name="fecha" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="descripcion">Descripción del trabajo</label>
+            <textarea id="descripcion" name="descripcion" placeholder="Ej. Fabricación de rótulo luminoso..." class="form-control" required></textarea>
+        </div>
+
+        <div class="details-grid">
+            <div>
+                <h3 class="section-title" style="font-size: 1rem; margin-bottom: 0.75rem;">Detalle de costos</h3>
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Importe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Materiales</td>
+                            <td>
+                                <div class="input-monto-wrapper">
+                                    <span>$</span>
+                                    <input type="number" id="txtMateriales" name="materiales" step="0.01" min="0" value="120.00" class="input-monto" oninput="calcularTotal()" required />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mano de obra</td>
+                            <td>
+                                <div class="input-monto-wrapper">
+                                    <span>$</span>
+                                    <input type="number" id="txtManoObra" name="manoObra" step="0.01" min="0" value="80.00" class="input-monto" oninput="calcularTotal()" required />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="total-row">
+                            <td>Total estimado</td>
+                            <td>
+                                <span id="lblTotal">$200.00</span>
+                                
+                                <input type="hidden" id="hdnTotal" name="total" value="200.00" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h3 class="section-title" style="font-size: 1rem; margin-bottom: 0.75rem;">Condiciones de pago</h3>
+                <table class="cost-table">
+                    <tbody>
+                        <tr>
+                            <td>Anticipo (50 %)</td>
+                            <td id="lblAnticipo">$100.00</td>
+                        </tr>
+                        <tr>
+                            <td>Saldo pendiente</td>
+                            <td id="lblSaldo">$100.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <a asp-controller="Home" asp-action="Cotizaciones" class="btn-cancel">Cancelar</a>
+            <button type="submit" class="btn-submit">Guardar cotización</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        function calcularTotal() {
+            var materiales = parseFloat(document.getElementById('txtMateriales').value) || 0;
+            var manoObra = parseFloat(document.getElementById('txtManoObra').value) || 0;
+
+            var total = materiales + manoObra;
+            var anticipo = total / 2;
+            var saldo = total / 2;
+
+           
+            document.getElementById('lblTotal').innerText = '$' + total.toFixed(2);
+            document.getElementById('hdnTotal').value = total.toFixed(2);
+            document.getElementById('lblAnticipo').innerText = '$' + anticipo.toFixed(2);
+            document.getElementById('lblSaldo').innerText = '$' + saldo.toFixed(2);
+        }
+    </script>
+}
+
+@if (TempData["MensajeExito"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            mostrarNotificacion('@TempData["MensajeExito"]');
+        });
+    </script>
+}
