@@ -1,5 +1,4 @@
-﻿
-using DAS_Proyecto.Models;
+﻿using DAS_Proyecto.Models;
 
 namespace DAS_Proyecto.Services.Interfaces
 {
@@ -13,9 +12,15 @@ namespace DAS_Proyecto.Services.Interfaces
 
         Task<decimal> ObtenerTotalPagadoAsync(int idOrdenTrabajo);
 
-        Task<bool> RegistrarPagoAsync(
+        Task<ResultadoPago> RegistrarPagoAsync(
             int idOrdenTrabajo,
             decimal monto,
-            TipoPago tipoPago);
+            TipoPago tipoPago,
+            DateTime fechaPago);
     }
+
+    public sealed record ResultadoPago(
+        bool Exito,
+        string Mensaje,
+        string? CodigoPago = null);
 }

@@ -1,5 +1,4 @@
-﻿
-using DAS_Proyecto.Models;
+﻿using DAS_Proyecto.Models;
 
 namespace DAS_Proyecto.Repositories.Interfaces
 {
@@ -14,6 +13,8 @@ namespace DAS_Proyecto.Repositories.Interfaces
         Task AgregarAsync(Pago pago);
 
         Task<decimal> ObtenerTotalPagadoAsync(int idOrdenTrabajo);
+
+        Task<decimal?> ObtenerTotalOrdenAsync(int idOrdenTrabajo);
 
         Task<bool> ExisteAnticipoAsync(int idOrdenTrabajo);
 
