@@ -1,0 +1,151 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión | Rótulos Ranibal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        body {
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            padding: 1.5rem;
+        }
+        .login-card {
+            background-color: #ffffff;
+            padding: 2.5rem 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            text-align: center;
+        }
+       .login-logo {
+            width: 100px; 
+            height: auto;
+            display: block;
+            margin: 0 auto 1.25rem;
+            object-fit: contain;
+        }
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            color: #4b5563;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+        .form-group {
+            text-align: left;
+            margin-bottom: 1.25rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: #1f2937;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-group input:focus {
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+        }
+        .login-button {
+            width: 100%;
+            background-color: #fbbf24;
+            color: #111827;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.2s;
+            margin-top: 0.5rem;
+        }
+        .login-button:hover {
+            background-color: #f59e0b;
+        }
+        .mensaje {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="login-container">
+        <section class="login-card">
+
+            <img src="/Imagen/Logo.png"
+                 alt="Logo de Rótulos Ranibal"
+                 class="login-logo" />
+
+            <h1>Bienvenido a Ranibal</h1>
+
+            <p class="subtitle">
+                Ingresa tus credenciales para continuar
+            </p>
+
+            <form asp-controller="Account" asp-action="Login" method="post">
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <label for="usuario">Usuario</label>
+                    <input type="text"
+                           id="usuario"
+                           name="usuario"
+                           placeholder="Ingresa tu usuario"
+                           autocomplete="username"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password"
+                           id="contrasena"
+                           name="contrasena"
+                           placeholder="Ingresa tu contraseña"
+                           autocomplete="current-password"
+                           required>
+                </div>
+
+                <p id="mensaje" class="mensaje"></p>
+
+                <button type="submit" class="login-button">
+                    Ingresar al sistema
+                </button>
+
+            </form>
+
+        </section>
+    </main>
+</body>
+</html>
