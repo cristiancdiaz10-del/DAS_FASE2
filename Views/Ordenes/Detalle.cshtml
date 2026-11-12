@@ -3,12 +3,49 @@
 
     var orden = ViewBag.Orden as Dictionary<string, string>;
     
-    string badgeClass = "badge-proceso";
-    if (orden != null)
+    string badgeClass = "badge-recepcion";
+
+if (orden != null)
+{
+    switch (orden["Estado"])
     {
-        if (orden["Estado"] == "Listo") { badgeClass = "badge-listo"; }
-        else if (orden["Estado"] == "Pendiente") { badgeClass = "badge-pendiente"; }
+        case "Recepcion":
+            badgeClass = "badge-recepcion";
+            break;
+
+        case "EnProceso":
+            badgeClass = "badge-proceso";
+            break;
+
+        case "Listo":
+            badgeClass = "badge-listo";
+            break;
+
+        case "Entregado":
+            badgeClass = "badge-entregado";
+            break;
     }
+}
+
+    string estadoActual = orden != null ? orden["Estado"] : "Recepcion";
+
+string estadoTexto = estadoActual switch
+{
+    "Recepcion" => "Recepción",
+    "EnProceso" => "En proceso",
+    "Listo" => "Listo",
+    "Entregado" => "Entregado",
+    _ => estadoActual
+};
+
+int indiceEstadoActual = estadoActual switch
+{
+    "Recepcion" => 0,
+    "EnProceso" => 1,
+    "Listo" => 2,
+    "Entregado" => 3,
+    _ => 0
+};
 }
 
 @section Styles {
@@ -94,9 +131,25 @@
             text-align: center;
         }
 
-        .badge-proceso { background-color: #dbeafe; color: #1d4ed8; }
-        .badge-listo { background-color: #dcfce7; color: #15803d; }
-        .badge-pendiente { background-color: #fecaca; color: #b91c1c; }
+       .badge-recepcion {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.badge-proceso {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+.badge-listo {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.badge-entregado {
+    background-color: #e0e7ff;
+    color: #3730a3;
+}
 
         .info-grid {
             display: grid;
@@ -157,6 +210,22 @@
             margin-top: 2px;
         }
 
+        .timeline-step.completada .timeline-icon {
+    color: #10b981;
+}
+
+.timeline-step.actual .timeline-icon {
+    color: #2563eb;
+}
+
+.timeline-step.pendiente .timeline-icon {
+    color: #9ca3af;
+}
+
+.timeline-step.actual .timeline-content h4 {
+    color: #2563eb;
+}
+
         .timeline-content h4 {
             font-size: 0.875rem;
             font-weight: 700;
@@ -184,7 +253,7 @@
         }
 
         .btn-submit:hover {
-            background-color: #d97706;
+            background-color: #d97706;s
         }
 
         
@@ -252,7 +321,7 @@
     {
         <div class="card-header-row">
             <h2 class="card-section-title">Información general</h2>
-            <span class="badge @badgeClass">@orden["Estado"]</span>
+            <span class="badge @badgeClass">@estadoTexto</span>
         </div>
 
         <div class="info-grid">
@@ -283,37 +352,47 @@
 
     <h3 class="timeline-title">Seguimiento del trabajo</h3>
 
-    <div class="timeline-container">
-        <div class="timeline-step">
-            <div class="timeline-icon" style="color: #10b981;">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            </div>
-            <div class="timeline-content">
-                <h4>Recepción</h4>
-                <p>Orden registrada</p>
-            </div>
-        </div>
+    @{
+    var etapas = new[]
+    {
+        (Codigo: "Recepcion", Nombre: "Recepción", Descripcion: "Orden registrada"),
+        (Codigo: "EnProceso", Nombre: "En proceso", Descripcion: "Trabajo en fabricación"),
+        (Codigo: "Listo", Nombre: "Listo", Descripcion: "Trabajo terminado, pendiente de entrega"),
+        (Codigo: "Entregado", Nombre: "Entregado", Descripcion: "Trabajo entregado al cliente")
+    };
+}
 
-        <div class="timeline-step">
-            <div class="timeline-icon" style="color: #f59e0b;">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            </div>
-            <div class="timeline-content">
-                <h4>En proceso</h4>
-                <p>Trabajo en fabricación</p>
-            </div>
-        </div>
+<div class="timeline-container">
 
-        <div class="timeline-step">
-            <div class="timeline-icon" style="color: #9ca3af;">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+    @for (int i = 0; i < etapas.Length; i++)
+    {
+        string claseEtapa = i < indiceEstadoActual
+            ? "completada"
+            : i == indiceEstadoActual
+                ? "actual"
+                : "pendiente";
+
+        string icono = i < indiceEstadoActual
+            ? "✓"
+            : i == indiceEstadoActual
+                ? "●"
+                : "○";
+
+        <div class="timeline-step @claseEtapa">
+
+            <div class="timeline-icon">
+                <span>@icono</span>
             </div>
+
             <div class="timeline-content">
-                <h4>Listo</h4>
-                <p>Pendiente de completar</p>
+                <h4>@etapas[i].Nombre</h4>
+                <p>@etapas[i].Descripcion</p>
             </div>
+
         </div>
-    </div>
+    }
+
+</div>
 
     <button type="button" class="btn-submit" onclick="abrirModalEstado()">
         Actualizar estado
@@ -330,10 +409,12 @@
             <input type="hidden" name="id" value="@(orden != null ? orden["Codigo"] : "")" />
 
             <label style="font-size: 0.85rem; font-weight: 700; color: #111827;">Nuevo Estado</label>
+
             <select name="nuevoEstado" class="form-select" required>
-                <option value="En proceso">En proceso</option>
+                <option value="Recepcion">Recepción</option>
+                <option value="EnProceso">En proceso</option>
                 <option value="Listo">Listo</option>
-                <option value="Pendiente">Pendiente</option>
+                <option value="Entregado">Entregado</option>
             </select>
 
             <div class="modal-actions">

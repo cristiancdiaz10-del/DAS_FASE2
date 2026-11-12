@@ -20,7 +20,7 @@ namespace DAS_Proyecto.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AgregarCotizacion(string cliente, DateTime fecha, decimal total, string estado)
+        public IActionResult AgregarCotizacion(string cliente, DateTime fecha, string descripcion, decimal materiales, decimal manoObra)
         {
             TempData["MensajeExito"] = "Cotización agregada correctamente";
             return RedirectToAction(nameof(Cotizaciones));
@@ -79,7 +79,7 @@ namespace DAS_Proyecto.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditarCotizacion(string codigo, string cliente, DateTime fecha, string descripcion, decimal materiales, decimal manoObra, decimal total)
+        public IActionResult EditarCotizacion(string codigo, string cliente, DateTime fecha, string descripcion, decimal materiales, decimal manoObra)
         {
             TempData["MensajeExito"] = $"¡Cotización {codigo} actualizada correctamente!";
             return RedirectToAction(nameof(Cotizaciones));
