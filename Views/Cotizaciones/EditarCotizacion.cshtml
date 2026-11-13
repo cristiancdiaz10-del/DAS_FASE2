@@ -268,7 +268,7 @@
         <div class="client-header-row">
             <span class="client-label">Cliente</span>
             
-            <span class="ot-detail-tag">Detalle de orden @(cotizacion != null && cotizacion.ContainsKey("OrdenId") ? cotizacion["OrdenId"] : "OT-001")</span>
+            <span class="ot-detail-tag">Cotización @(cotizacion != null ? cotizacion["Codigo"] : "COT-001")</span>
         </div>
 
         <div class="form-group">
@@ -282,7 +282,7 @@
 
         <div class="form-group">
             <label for="fecha">Fecha de cotización</label>
-            <input type="text" id="fecha" name="fecha" value="@(cotizacion != null ? cotizacion["Fecha"] : "")" class="form-control" placeholder="DD/MM/AAAA" required />
+            <input type="date" id="fecha" name="fecha" value="@(cotizacion != null ? cotizacion["Fecha"] : "")" class="form-control" required />
         </div>
 
         <div class="form-group">
