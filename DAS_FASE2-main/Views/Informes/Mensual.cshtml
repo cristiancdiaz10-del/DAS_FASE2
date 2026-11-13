@@ -1,6 +1,9 @@
 
 @model DAS_Proyecto.ViewModels.InformeMensualViewModel
 
+@using System.Linq
+@using System.Globalization
+
 @{
     ViewData["Title"] = "Informe mensual";
 
@@ -9,6 +12,22 @@
         "Enero", "Febrero", "Marzo", "Abril",
         "Mayo", "Junio", "Julio", "Agosto",
         "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    };
+
+    var ingresosSemanales = Model.IngresosSemanales
+        ?? new List<DAS_Proyecto.ViewModels.IngresoSemanalViewModel>();
+
+    decimal maxIngreso = ingresosSemanales.Any()
+        ? ingresosSemanales.Max(s => s.TotalIngresos)
+        : 0m;
+
+    var estados = new[]
+    {
+        new { Codigo = "PendienteAnticipo", Nombre = "Pendiente de anticipo" },
+        new { Codigo = "Recepcion", Nombre = "Recepción" },
+        new { Codigo = "EnProceso", Nombre = "En proceso" },
+        new { Codigo = "Listo", Nombre = "Listo" },
+        new { Codigo = "Entregado", Nombre = "Entregado" }
     };
 }
 
@@ -38,7 +57,9 @@
         font-size: .9rem;
     }
 
-    .filtro-card, .indicador-card {
+    .filtro-card,
+    .indicador-card,
+    .seccion-card {
         background: white;
         border: 1px solid #e5e7eb;
         border-radius: 12px;
@@ -108,6 +129,119 @@
         align-items: center;
         justify-content: center;
         font-size: 1.4rem;
+        font-weight: 800;
+    }
+
+    .seccion-card {
+        padding: 25px;
+        margin-top: 25px;
+    }
+
+    .seccion-titulo {
+        font-size: 1.1rem;
+        font-weight: 800;
+        margin-bottom: 5px;
+        color: #111827;
+    }
+
+    .seccion-descripcion {
+        color: #6b7280;
+        font-size: .85rem;
+        margin-bottom: 25px;
+    }
+
+    /* Gráfica semanal */
+
+    .semana-item {
+        margin-bottom: 22px;
+    }
+
+    .semana-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .semana-encabezado {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 9px;
+        font-size: .875rem;
+    }
+
+    .semana-nombre {
+        font-weight: 700;
+        color: #374151;
+    }
+
+    .semana-total {
+        font-weight: 800;
+        color: #111827;
+    }
+
+    .barra-fondo {
+        width: 100%;
+        height: 13px;
+        border-radius: 20px;
+        background: #f3f4f6;
+        overflow: hidden;
+    }
+
+    .barra-ingresos {
+        height: 100%;
+        min-width: 0;
+        background: #f59e0b;
+        border-radius: 20px;
+        transition: width .3s ease;
+    }
+
+    .semana-fecha {
+        display: block;
+        margin-top: 7px;
+        color: #9ca3af;
+        font-size: .75rem;
+    }
+
+    /* Pedidos por estado */
+
+    .estado-item {
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 17px;
+        height: 100%;
+    }
+
+    .estado-nombre {
+        color: #6b7280;
+        font-size: .82rem;
+        font-weight: 600;
+        min-height: 35px;
+    }
+
+    .estado-cantidad {
+        font-size: 1.7rem;
+        font-weight: 800;
+        color: #111827;
+        margin: 8px 0 12px;
+    }
+
+    .estado-barra-fondo {
+        height: 7px;
+        background: #f3f4f6;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .estado-barra {
+        height: 100%;
+        background: #f59e0b;
+        border-radius: 20px;
+    }
+
+    .estado-porcentaje {
+        display: block;
+        color: #9ca3af;
+        font-size: .75rem;
+        margin-top: 7px;
     }
 
     .periodo-texto {
@@ -125,7 +259,16 @@
         font-size: .85rem;
     }
 
-    @@media (max-width: 600px) {
+    .sin-datos {
+        padding: 30px 15px;
+        text-align: center;
+        background: #f9fafb;
+        border-radius: 8px;
+        color: #6b7280;
+        font-size: .875rem;
+    }
+
+    @@media (max-width: 768px) {
         .informe-container {
             padding: 15px;
         }
@@ -133,11 +276,16 @@
         .indicador-valor {
             font-size: 1.6rem;
         }
+
+        .seccion-card {
+            padding: 18px;
+        }
     }
 </style>
 
 <div class="informe-container">
 
+    <!-- ENCABEZADO -->
     <div class="informe-header">
         <div>
             <h1 class="informe-title">Informe mensual</h1>
@@ -147,7 +295,7 @@
         </div>
     </div>
 
-    <!-- Filtro de periodo -->
+    <!-- FILTRO DE PERIODO -->
     <div class="filtro-card">
         <form asp-controller="Informes"
               asp-action="Mensual"
@@ -157,6 +305,7 @@
 
                 <div class="col-md-5">
                     <label for="mes">Mes</label>
+
                     <select id="mes" name="mes">
                         @for (int i = 0; i < meses.Length; i++)
                         {
@@ -170,6 +319,7 @@
 
                 <div class="col-md-4">
                     <label for="anio">Año</label>
+
                     <select id="anio" name="anio">
                         @for (int anio = DateTime.Today.Year - 5;
                               anio <= DateTime.Today.Year + 1;
@@ -193,7 +343,7 @@
         </form>
     </div>
 
-    <!-- Indicadores -->
+    <!-- INDICADORES GENERALES -->
     <div class="row g-4">
 
         <div class="col-md-6">
@@ -201,14 +351,13 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <p class="indicador-label">Ingresos totales</p>
+
                         <h2 class="indicador-valor">
                             $@Model.TotalIngresos.ToString("N2")
                         </h2>
                     </div>
 
-                    <div class="indicador-icon">
-                        $
-                    </div>
+                    <div class="indicador-icon">$</div>
                 </div>
             </div>
         </div>
@@ -218,31 +367,146 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <p class="indicador-label">Cantidad de pedidos</p>
+
                         <h2 class="indicador-valor">
                             @Model.CantidadPedidos
                         </h2>
                     </div>
 
-                    <div class="indicador-icon">
-                        #
-                    </div>
+                    <div class="indicador-icon">#</div>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- Periodo consultado -->
+    <!-- GRÁFICA DE INGRESOS SEMANALES -->
+    <div class="seccion-card">
+
+        <h3 class="seccion-titulo">Ingresos por semana</h3>
+
+        <p class="seccion-descripcion">
+            Distribución de ingresos durante el mes seleccionado.
+        </p>
+
+        @if (ingresosSemanales.Any())
+        {
+            @foreach (var semana in ingresosSemanales)
+            {
+                decimal porcentaje = maxIngreso > 0
+                    ? (semana.TotalIngresos / maxIngreso) * 100m
+                    : 0m;
+
+                string ancho = porcentaje.ToString(
+                    "0.##",
+                    CultureInfo.InvariantCulture
+                );
+
+                <div class="semana-item">
+
+                    <div class="semana-encabezado">
+                        <span class="semana-nombre">
+                            @semana.Semana
+                        </span>
+
+                        <strong class="semana-total">
+                            $@semana.TotalIngresos.ToString("N2")
+                        </strong>
+                    </div>
+
+                    <div class="barra-fondo">
+                        <div class="barra-ingresos"
+                             style="width: @(ancho)%;"></div>
+                    </div>
+
+                    <small class="semana-fecha">
+                        Del @semana.Inicio.ToString("dd/MM/yyyy")
+                        al @semana.FinExclusivo.AddDays(-1).ToString("dd/MM/yyyy")
+                    </small>
+
+                </div>
+            }
+        }
+        else
+        {
+            <div class="sin-datos">
+                No hay ingresos semanales disponibles para este periodo.
+            </div>
+        }
+
+    </div>
+
+    <!-- PEDIDOS POR ESTADO -->
+    <div class="seccion-card">
+
+        <h3 class="seccion-titulo">Pedidos por estado</h3>
+
+        <p class="seccion-descripcion">
+            Distribución de pedidos según su estado durante el periodo seleccionado.
+        </p>
+
+        <div class="row g-3">
+
+            @foreach (var estado in estados)
+            {
+                int cantidad = 0;
+
+                if (Model.PedidosPorEstado != null)
+                {
+                    Model.PedidosPorEstado.TryGetValue(
+                        estado.Codigo,
+                        out cantidad
+                    );
+                }
+
+                decimal porcentajeEstado = Model.CantidadPedidos > 0
+                    ? (decimal)cantidad / Model.CantidadPedidos * 100m
+                    : 0m;
+
+                string anchoEstado = porcentajeEstado.ToString(
+                    "0.##",
+                    CultureInfo.InvariantCulture
+                );
+
+                <div class="col-sm-6 col-lg-4 col-xl-3">
+                    <div class="estado-item">
+
+                        <div class="estado-nombre">
+                            @estado.Nombre
+                        </div>
+
+                        <div class="estado-cantidad">
+                            @cantidad
+                        </div>
+
+                        <div class="estado-barra-fondo">
+                            <div class="estado-barra"
+                                 style="width: @(anchoEstado)%;"></div>
+                        </div>
+
+                        <small class="estado-porcentaje">
+                            @porcentajeEstado.ToString("N1") % de los pedidos
+                        </small>
+
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <!-- PERIODO CONSULTADO -->
     <div class="periodo-texto">
         <strong>Periodo consultado:</strong>
+
         @(Model.Mes >= 1 && Model.Mes <= 12
-    ? meses[Model.Mes - 1]
-    : "Mes no válido") de @Model.Anio
+            ? meses[Model.Mes - 1]
+            : "Mes no válido") de @Model.Anio
     </div>
 
     <p class="nota-informe">
-        Los indicadores mostrarán los resultados reales cuando se conecten
-        las consultas con la base de datos.
+        Los resultados dependen de los datos proporcionados por el servicio
+        de informes y de las consultas de la base de datos.
     </p>
 
 </div>

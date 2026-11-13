@@ -1,6 +1,11 @@
-﻿using DAS_Proyecto.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+using DAS_Proyecto.Models;
 using DAS_Proyecto.Repositories.Interfaces;
 using DAS_Proyecto.Services.Interfaces;
+using DAS_Proyecto.Services;
 
 namespace DAS_Proyecto.Services.Implementations
 {
@@ -39,6 +44,10 @@ namespace DAS_Proyecto.Services.Implementations
             return _pagoRepository.ObtenerTotalPagadoAsync(
                 idOrdenTrabajo);
         }
+
+        // ============================================
+        // REGISTRAR PAGO
+        // ============================================
 
         public async Task<ResultadoPago> RegistrarPagoAsync(
             int idOrdenTrabajo,
@@ -84,8 +93,12 @@ namespace DAS_Proyecto.Services.Implementations
                 return new ResultadoPago(false, error);
             }
 
+            // Generar código único.
+            string codigoPago = await GenerarCodigoPagoAsync();
+
             var pago = new Pago
             {
+                CodigoPago = codigoPago,
                 IdOrdenTrabajo = idOrdenTrabajo,
                 MontoPago = monto,
                 FechaPago = fechaPago,
@@ -98,6 +111,30 @@ namespace DAS_Proyecto.Services.Implementations
                 true,
                 "Pago registrado correctamente.",
                 pago.CodigoPago);
+        }
+
+        // ============================================
+        // GENERAR CÓDIGO ÚNICO DEL PAGO
+        // ============================================
+
+        private async Task<string> GenerarCodigoPagoAsync()
+        {
+            string codigo;
+
+            do
+            {
+                string identificador = Guid.NewGuid()
+                    .ToString("N")
+                    .Substring(0, 12)
+                    .ToUpperInvariant();
+
+                codigo = $"PAG-{identificador}";
+
+            } while (
+                await _pagoRepository.ExisteCodigoAsync(codigo)
+            );
+
+            return codigo;
         }
     }
 }
