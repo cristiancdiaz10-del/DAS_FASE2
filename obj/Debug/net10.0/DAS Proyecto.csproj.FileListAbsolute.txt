@@ -331,3 +331,4 @@ C:\Users\samue\Desktop\Universidad Ciclo II 2026\DAS Proyecto-version final\obj\
 C:\Users\samue\Desktop\Universidad Ciclo II 2026\DAS Proyecto-version final\obj\Debug\net10.0\DAS Proyecto.pdb
 C:\Users\samue\Desktop\Universidad Ciclo II 2026\DAS Proyecto-version final\obj\Debug\net10.0\DAS Proyecto.genruntimeconfig.cache
 C:\Users\samue\Desktop\Universidad Ciclo II 2026\DAS Proyecto-version final\obj\Debug\net10.0\ref\DAS Proyecto.dll
+C:\Users\samue\Desktop\Universidad Ciclo II 2026\DAS Proyecto-version final\obj\Debug\net10.0\DAS Proyecto.sourcelink.json

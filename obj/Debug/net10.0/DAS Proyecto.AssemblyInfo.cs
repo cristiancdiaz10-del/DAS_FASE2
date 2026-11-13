@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DAS Proyecto")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7ffcf0f6307a578b50333abca21c60c62858b286")]
 [assembly: System.Reflection.AssemblyProductAttribute("DAS Proyecto")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DAS Proyecto")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

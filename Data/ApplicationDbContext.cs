@@ -14,7 +14,7 @@ namespace DAS_Proyecto.Data
         //public DbSet<OrdenTrabajo> OrdenesTrabajo { get; set; }
         //public DbSet<DetalleOrdenMaterial> DetalleOrdenMateriales { get; set; }
         public DbSet<Material> Materiales { get; set; }
-        //public DbSet<Pago> Pagos { get; set; }
+        public DbSet<Pago> Pagos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,9 @@ namespace DAS_Proyecto.Data
             // Configuración de precisión decimal obligatoria para materiales
             modelBuilder.Entity<Material>().Property(m => m.CantidadDisponible).HasColumnType("decimal(18,2)");
             modelBuilder.Entity<Material>().Property(m => m.CostoUnitario).HasColumnType("decimal(18,2)");
+
+            // Configuración de precisión decimal para pagos
+            modelBuilder.Entity<Pago>().Property(p => p.MontoPago).HasColumnType("decimal(18,2)"); ;
         }
     }
 }
