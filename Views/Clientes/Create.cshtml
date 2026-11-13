@@ -1,0 +1,56 @@
+@model DAS_FASE2.ViewModels.ClienteViewModel
+
+@{
+    ViewData["Title"] = "Registrar Cliente";
+}
+
+<div class="container mt-4">
+    <h2>Registrar Nuevo Cliente</h2>
+    <hr />
+
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+        
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="mb-3">
+            <label asp-for="Nombre" class="form-label"></label>
+            <input asp-for="Nombre" class="form-control" />
+            <span asp-validation-for="Nombre" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Telefono" class="form-label"></label>
+            <input asp-for="Telefono" class="form-control" />
+            <span asp-validation-for="Telefono" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Correo" class="form-label"></label>
+            <input asp-for="Correo" class="form-control" />
+            <span asp-validation-for="Correo" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Empresa" class="form-label"></label>
+            <input asp-for="Empresa" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Direccion" class="form-label"></label>
+            <input asp-for="Direccion" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Observaciones" class="form-label"></label>
+            <textarea asp-for="Observaciones" class="form-control" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
