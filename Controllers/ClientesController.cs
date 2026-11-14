@@ -4,6 +4,9 @@ using DAS_Proyecto.Data;
 using DAS_Proyecto.Models;
 using DAS_Proyecto.ViewModels;
 using DAS_Proyecto.Repositories.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DAS_Proyecto.Controllers
 {
@@ -55,6 +58,7 @@ namespace DAS_Proyecto.Controllers
                 };
 
                 await _clienteRepository.AgregarAsync(cliente);
+                TempData["MensajeExito"] = "¡Cliente agregado correctamente!";
                 return RedirectToAction(nameof(Index));
             }
             return View(clienteViewModel);
@@ -112,7 +116,54 @@ namespace DAS_Proyecto.Controllers
         }
 
         // ==========================================
-        // 6. DELETE: Elimina el registro por ID
+        // 6. DETALLE (GET): Muestra la información y órdenes asociadas
+        // ==========================================
+        [HttpGet]
+        public async Task<IActionResult> Detalle(int id)
+        {
+            var cliente = await _clienteRepository.ObtenerPorIdAsync(id);
+
+            if (cliente == null)
+            {
+                return NotFound();
+            }
+
+            // Simulación de órdenes asociadas para la vista de detalles
+            var todasLasOrdenes = new List<Dictionary<string, string>>
+            {
+                new Dictionary<string, string>
+                {
+                    { "Codigo", "OT-001" },
+                    { "ClienteId", cliente.IdCliente.ToString() },
+                    { "Trabajo", "Fabricación de rótulo luminoso" },
+                    { "Total", "$350.00" }
+                },
+                new Dictionary<string, string>
+                {
+                    { "Codigo", "OT-002" },
+                    { "ClienteId", "999" }, // Otro ID de prueba
+                    { "Trabajo", "Cenefa impresas" },
+                    { "Total", "$180.00" }
+                },
+                new Dictionary<string, string>
+                {
+                    { "Codigo", "OT-003" },
+                    { "ClienteId", cliente.IdCliente.ToString() },
+                    { "Trabajo", "Adhesivo troquelado" },
+                    { "Total", "$95.00" }
+                }
+            };
+
+            var ordenesAsociadas = todasLasOrdenes.Where(o => o["ClienteId"] == cliente.IdCliente.ToString()).ToList();
+
+            ViewBag.Cliente = cliente;
+            ViewBag.Ordenes = ordenesAsociadas;
+
+            return View();
+        }
+
+        // ==========================================
+        // 7. DELETE: Elimina el registro por ID
         // ==========================================
         [HttpPost]
         [ValidateAntiForgeryToken]

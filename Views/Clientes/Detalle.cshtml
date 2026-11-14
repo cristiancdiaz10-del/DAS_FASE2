@@ -191,50 +191,53 @@
     </a>
 </div>
 
-<div class="metrics-grid">
-    <div class="metric-card">
-        <div class="metric-label">Código</div>
-        <div class="metric-value">@cliente["Codigo"]</div>
-    </div>
-    <div class="metric-card">
-        <div class="metric-label">Órdenes registradas</div>
-        <div class="metric-value">@cliente["TotalOrdenes"]</div>
-    </div>
-</div>
-
-<div class="card-panel">
-    <h2 class="card-section-title">Información del cliente</h2>
-
-    <div class="info-grid">
-        <div class="info-item">
-            <label>Nombre del cliente</label>
-            <span>@cliente["Nombre"]</span>
+@if (cliente != null)
+{
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-label">Código</div>
+            <div class="metric-value">@cliente["Codigo"]</div>
         </div>
-        <div class="info-item">
-            <label>Fecha de registro</label>
-            <span>@cliente["Fecha"]</span>
-        </div>
-
-        <div class="info-item">
-            <label>Teléfono</label>
-            <span>@cliente["Telefono"]</span>
-        </div>
-        <div class="info-item">
-            <label>Correo electrónico</label>
-            <span>@cliente["Correo"]</span>
-        </div>
-
-        <div class="info-item info-item-full">
-            <label>Dirección</label>
-            <span>@cliente["Direccion"]</span>
-        </div>
-
-        <div class="info-item info-item-full">
-            <label>Observaciones</label>
-            <span>@cliente["Observaciones"]</span>
+        <div class="metric-card">
+            <div class="metric-label">Órdenes registradas</div>
+            <div class="metric-value">@cliente["TotalOrdenes"]</div>
         </div>
     </div>
-</div>
+
+    <div class="card-panel">
+        <h2 class="card-section-title">Información del cliente</h2>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <label>Nombre del cliente</label>
+                <span>@cliente["Nombre"]</span>
+            </div>
+            <div class="info-item">
+                <label>Fecha de registro</label>
+                <span>@cliente["Fecha"]</span>
+            </div>
+
+            <div class="info-item">
+                <label>Teléfono</label>
+                <span>@cliente["Telefono"]</span>
+            </div>
+            <div class="info-item">
+                <label>Correo electrónico</label>
+                <span>@cliente["Correo"]</span>
+            </div>
+
+            <div class="info-item info-item-full">
+                <label>Dirección</label>
+                <span>@cliente["Direccion"]</span>
+            </div>
+
+            <div class="info-item info-item-full">
+                <label>Observaciones</label>
+                <span>@cliente["Observaciones"]</span>
+            </div>
+        </div>
+    </div>
+}
 
 <div class="card-panel">
     <h2 class="card-section-title">Órdenes de trabajo del cliente</h2>

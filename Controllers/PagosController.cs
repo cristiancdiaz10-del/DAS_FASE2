@@ -1,39 +1,71 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using DAS_Proyecto.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RotulosRanibal.Controllers
+namespace DAS_Proyecto.Controllers
 {
     public class PagosController : Controller
     {
-        
+        // ==========================================
+        // 1. INDEX: Listado de pagos
+        // ==========================================
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var modelo = new PagoListadoViewModel
+            {
+                TotalPagado = 355.00m,
+                TotalAnticipos = 175.00m,
+                TotalSaldosPendientes = 180.00m,
+                Pagos = new List<PagoItemViewModel>()
+            };
+
+            return View(modelo);
         }
 
-        
+        // ==========================================
+        // 2. REGISTRAR PAGO (GET): Muestra el formulario
+        // ==========================================
         [HttpGet]
         public IActionResult RegistrarPago()
         {
-            return View();
+            var modelo = new RegistrarPagoViewModel
+            {
+                FechaPago = DateTime.Today
+            };
+
+            return View(modelo);
         }
 
-       
+        // ==========================================
+        // 3. GUARDAR PAGO (POST): Procesa el registro
+        // ==========================================
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult GuardarPago(string orden, string tipoPago, decimal monto, DateTime fecha)
+        public IActionResult GuardarPago(RegistrarPagoViewModel modelo)
         {
-            
-            TempData["MensajeExito"] = "¡Pago registrado correctamente!";
+            if (!ModelState.IsValid)
+            {
+                return View("RegistrarPago", modelo);
+            }
 
+            TempData["MensajeExito"] = "¡Pago registrado correctamente!";
             return RedirectToAction(nameof(Index));
         }
 
-        
+        // ==========================================
+        // 4. DETALLES DE PAGO: Muestra la información detallada
+        // ==========================================
+        [HttpGet]
         public IActionResult DetallesPago(string id)
         {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return NotFound();
+            }
+
             var listaPagos = new List<Dictionary<string, string>>
             {
                 new Dictionary<string, string> { { "Codigo", "PAG-001" }, { "Orden", "OT-001" }, { "Cliente", "Comercial ABC" }, { "Monto", "$175.00" }, { "Tipo", "Anticipo" }, { "Fecha", "10/10/2026" } },

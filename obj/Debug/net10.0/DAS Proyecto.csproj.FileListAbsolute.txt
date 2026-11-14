@@ -1,5 +1,8 @@
 C:\Users\cryst\source\repos\DAS_FASE2\bin\Debug\net10.0\appsettings.Development.json
 C:\Users\cryst\source\repos\DAS_FASE2\bin\Debug\net10.0\appsettings.json
+C:\Users\cryst\source\repos\DAS_FASE2\bin\Debug\net10.0\DAS_FASE2-main\appsettings.Development.json
+C:\Users\cryst\source\repos\DAS_FASE2\bin\Debug\net10.0\DAS_FASE2-main\appsettings.json
+C:\Users\cryst\source\repos\DAS_FASE2\bin\Debug\net10.0\DAS_FASE2-main\Properties\launchSettings.json
 C:\Users\cryst\source\repos\DAS_FASE2\bin\Debug\net10.0\DAS Proyecto.staticwebassets.runtime.json
 C:\Users\cryst\source\repos\DAS_FASE2\bin\Debug\net10.0\DAS Proyecto.staticwebassets.endpoints.json
 C:\Users\cryst\source\repos\DAS_FASE2\bin\Debug\net10.0\DAS Proyecto.exe
