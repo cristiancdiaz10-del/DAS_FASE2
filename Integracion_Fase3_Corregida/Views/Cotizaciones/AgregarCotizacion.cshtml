@@ -1,0 +1,101 @@
+@model DAS_Proyecto.ViewModels.CotizacionFormViewModel
+@{
+    ViewData["Title"] = "Nueva cotización";
+}
+
+@section Styles {
+    <style>
+        .header-flex{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:2rem}.page-title{font-size:1.75rem;font-weight:800;color:#111827;margin-bottom:.25rem}.page-subtitle{color:#4b5563;font-size:.875rem}.btn-top-back{background:#fff;color:#111827;border:1px solid #e5e7eb;padding:.5rem 1rem;border-radius:.5rem;font-weight:600;font-size:.8rem;text-decoration:none}.card-panel{background:#fff;border-radius:.75rem;padding:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05);border:1px solid #e5e7eb}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.form-group{margin-bottom:1.25rem}.form-group label{display:block;font-size:.875rem;font-weight:700;color:#111827;margin-bottom:.5rem}.form-control{width:100%;padding:.75rem 1rem;border:1px solid #d1d5db;border-radius:.5rem;font-size:.875rem;color:#374151;background:#fff}.form-control:focus{outline:none;border-color:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.15)}textarea.form-control{min-height:100px;resize:vertical}.details-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin:1rem 0 2rem;padding-top:1.5rem;border-top:1px solid #f3f4f6}.section-title{font-size:1rem;font-weight:700;color:#111827;margin-bottom:.75rem}.cost-table{width:100%;border-collapse:collapse}.cost-table td{padding:.75rem 0;font-size:.875rem;border-bottom:1px solid #e5e7eb}.cost-table td:last-child{text-align:right}.input-monto{width:130px;padding:.45rem .6rem;border:1px solid #d1d5db;border-radius:.375rem;text-align:right}.total-row td{font-weight:800;font-size:1rem;border-bottom:0}.form-actions{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid #f3f4f6}.btn-cancel,.btn-submit{display:block;width:100%;padding:.85rem;border-radius:.5rem;font-weight:700;font-size:.9rem;text-align:center;text-decoration:none;cursor:pointer}.btn-cancel{background:#fff;color:#111827;border:1px solid #d1d5db}.btn-submit{background:#f59e0b;color:#fff;border:0}.validation-summary-errors,.field-validation-error{color:#b91c1c;font-size:.85rem}.validation-summary-errors ul{margin:.4rem 0 1rem 1.25rem}.hint{font-size:.8rem;color:#6b7280;margin-top:.35rem}.alert-error{padding:.8rem 1rem;border-radius:.5rem;background:#fef2f2;color:#991b1b;border:1px solid #fecaca;margin-bottom:1rem}@@media(max-width:720px){.form-grid,.details-grid{grid-template-columns:1fr}.card-panel{padding:1.25rem}.header-flex{flex-direction:column}}
+    </style>
+}
+
+<div class="header-flex">
+    <div>
+        <h1 class="page-title">Nueva cotización</h1>
+        <p class="page-subtitle">Registra un presupuesto con datos existentes del sistema.</p>
+    </div>
+    <a asp-controller="Cotizaciones" asp-action="Cotizaciones" class="btn-top-back">← Volver a cotizaciones</a>
+</div>
+
+<div class="card-panel">
+    <form asp-controller="Cotizaciones" asp-action="AgregarCotizacion" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
+
+        @if (Model.Clientes.Count == 0 || Model.Usuarios.Count == 0 || Model.Servicios.Count == 0)
+        {
+            <div class="alert-error">Para registrar una cotización necesitas al menos un cliente, un usuario y un servicio registrados. Primero crea los registros faltantes en sus respectivos módulos.</div>
+        }
+
+        <div class="form-grid">
+            <div class="form-group">
+                <label asp-for="IdCliente"></label>
+                <select asp-for="IdCliente" asp-items="Model.Clientes" class="form-control"><option value="0">Seleccionar cliente...</option></select>
+                <span asp-validation-for="IdCliente" class="field-validation-error"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdUsuario"></label>
+                <select asp-for="IdUsuario" asp-items="Model.Usuarios" class="form-control"><option value="0">Seleccionar responsable...</option></select>
+                <span asp-validation-for="IdUsuario" class="field-validation-error"></span>
+                <div class="hint">Hasta implementar el inicio de sesión, selecciona el usuario responsable de la cotización.</div>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdServicio"></label>
+                <select asp-for="IdServicio" asp-items="Model.Servicios" class="form-control"><option value="0">Seleccionar servicio...</option></select>
+                <span asp-validation-for="IdServicio" class="field-validation-error"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaCotizacion"></label>
+                <input asp-for="FechaCotizacion" type="date" class="form-control" />
+                <span asp-validation-for="FechaCotizacion" class="field-validation-error"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="DescripcionTrabajo"></label>
+            <textarea asp-for="DescripcionTrabajo" class="form-control" placeholder="Ej. Fabricación de rótulo luminoso para fachada principal..."></textarea>
+            <span asp-validation-for="DescripcionTrabajo" class="field-validation-error"></span>
+        </div>
+
+        <div class="details-grid">
+            <div>
+                <h3 class="section-title">Detalle de costos</h3>
+                <table class="cost-table">
+                    <tr><td><label asp-for="CostoMateriales"></label></td><td><input asp-for="CostoMateriales" type="number" min="0" step="0.01" class="input-monto" oninput="calcularTotal()" /></td></tr>
+                    <tr><td><label asp-for="CostoManoObra"></label></td><td><input asp-for="CostoManoObra" type="number" min="0" step="0.01" class="input-monto" oninput="calcularTotal()" /></td></tr>
+                    <tr class="total-row"><td>Total estimado</td><td id="lblTotal">$0.00</td></tr>
+                </table>
+                <span asp-validation-for="CostoMateriales" class="field-validation-error"></span>
+                <span asp-validation-for="CostoManoObra" class="field-validation-error"></span>
+            </div>
+            <div>
+                <h3 class="section-title">Condiciones de pago referenciales</h3>
+                <table class="cost-table">
+                    <tr><td>Anticipo (50 %)</td><td id="lblAnticipo">$0.00</td></tr>
+                    <tr><td>Saldo pendiente</td><td id="lblSaldo">$0.00</td></tr>
+                </table>
+                <div class="hint">El total y los saldos se recalculan en el servidor al guardar.</div>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <a asp-controller="Cotizaciones" asp-action="Cotizaciones" class="btn-cancel">Cancelar</a>
+            <button type="submit" class="btn-submit" disabled="@(Model.Clientes.Count == 0 || Model.Usuarios.Count == 0 || Model.Servicios.Count == 0)">Guardar cotización</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function calcularTotal() {
+            const materiales = Number.parseFloat(document.getElementById('CostoMateriales').value) || 0;
+            const manoObra = Number.parseFloat(document.getElementById('CostoManoObra').value) || 0;
+            const total = materiales + manoObra;
+            document.getElementById('lblTotal').textContent = '$' + total.toFixed(2);
+            document.getElementById('lblAnticipo').textContent = '$' + (total / 2).toFixed(2);
+            document.getElementById('lblSaldo').textContent = '$' + (total / 2).toFixed(2);
+        }
+        document.addEventListener('DOMContentLoaded', calcularTotal);
+    </script>
+}

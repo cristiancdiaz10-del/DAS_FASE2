@@ -1,0 +1,14 @@
+# Visual Studio / C#
+.vs/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.cache
+*.log
+
+# Test output
+TestResults/
+
+# Local secrets
+appsettings.*.local.json

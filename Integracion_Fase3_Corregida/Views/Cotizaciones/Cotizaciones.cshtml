@@ -1,0 +1,135 @@
+@model DAS_Proyecto.ViewModels.CotizacionesListadoViewModel
+@{
+    ViewData["Title"] = "Gestión de cotizaciones";
+    var estados = Enum.GetValues<EstadoCotizacion>();
+}
+
+@section Styles {
+    <style>
+        .cotizaciones-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1.5rem; gap:1rem; }
+        .page-title { font-size:1.75rem; font-weight:800; color:#111827; line-height:1.2; margin-bottom:.25rem; }
+        .page-subtitle { color:#4b5563; font-size:.875rem; }
+        .btn-primary-orange { background:#f59e0b; color:#fff !important; border:0; padding:.65rem 1.25rem; border-radius:.5rem; font-weight:700; font-size:.875rem; text-decoration:none; cursor:pointer; display:inline-block; text-align:center; white-space:nowrap; }
+        .btn-primary-orange:hover { background:#d97706; }
+        .filters-container { display:flex; gap:1rem; margin-bottom:1.5rem; flex-wrap:wrap; align-items:center; }
+        .search-input,.filter-select { padding:.65rem 1rem; background:#fff; border:1px solid #d1d5db; border-radius:.5rem; font-size:.875rem; color:#374151; outline:none; }
+        .search-input { width:100%; max-width:380px; }
+        .filter-select { width:100%; max-width:210px; cursor:pointer; }
+        .search-input:focus,.filter-select:focus { border-color:#f59e0b; box-shadow:0 0 0 3px rgba(245,158,11,.15); }
+        .btn-filter { border:0; border-radius:.5rem; background:#1f2937; color:#fff; padding:.68rem 1rem; font-weight:600; cursor:pointer; }
+        .btn-clear { color:#4b5563; font-size:.875rem; text-decoration:none; }
+        .table-card { background:#fff; border-radius:.75rem; box-shadow:0 1px 3px rgba(0,0,0,.05); border:1px solid #e5e7eb; padding:1.5rem; }
+        .table-section-title { font-size:1rem; font-weight:700; color:#111827; margin-bottom:1rem; }
+        .data-table { width:100%; border-collapse:collapse; text-align:left; font-size:.875rem; }
+        .data-table th { color:#4b5563; font-weight:700; font-size:.75rem; text-transform:uppercase; padding:.75rem 1rem; border-bottom:1px solid #e5e7eb; }
+        .data-table td { padding:1rem; color:#1f2937; border-bottom:1px solid #f3f4f6; font-weight:500; vertical-align:middle; }
+        .data-table tr:last-child td { border-bottom:none; }
+        .badge { display:inline-block; padding:.35rem .85rem; border-radius:9999px; font-size:.75rem; font-weight:600; text-align:center; }
+        .badge-blue { background:#93c5fd; color:#1e3a8a; }
+        .badge-green { background:#86efac; color:#14532d; }
+        .badge-red { background:#fca5a5; color:#7f1d1d; }
+        .action-link { color:#2563eb; font-weight:600; text-decoration:none; margin-right:.75rem; }
+        .action-link:hover { text-decoration:underline; }
+        .delete-button { border:0; background:none; color:#b91c1c; font:inherit; font-weight:600; cursor:pointer; padding:0; }
+        .empty-row { text-align:center; color:#6b7280 !important; padding:2rem !important; }
+        .alert-success,.alert-error { padding:.8rem 1rem; border-radius:.5rem; margin-bottom:1rem; font-size:.9rem; }
+        .alert-success { background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0; }
+        .alert-error { background:#fef2f2; color:#991b1b; border:1px solid #fecaca; }
+        @@media(max-width:760px) { .table-card { overflow-x:auto; } .data-table { min-width:760px; } .cotizaciones-header { flex-direction:column; } }
+    </style>
+}
+
+<div class="cotizaciones-header">
+    <div>
+        <h1 class="page-title">Gestión de cotizaciones</h1>
+        <p class="page-subtitle">Prepara presupuestos y consulta las cotizaciones de los clientes.</p>
+    </div>
+    <a asp-controller="Cotizaciones" asp-action="AgregarCotizacion" class="btn-primary-orange">+ Nueva cotización</a>
+</div>
+
+@if (TempData["MensajeExito"] is string mensajeExito)
+{
+    <div class="alert-success" role="status">@mensajeExito</div>
+}
+@if (TempData["MensajeError"] is string mensajeError)
+{
+    <div class="alert-error" role="alert">@mensajeError</div>
+}
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert-error">@Html.ValidationSummary(false)</div>
+}
+
+<form asp-controller="Cotizaciones" asp-action="Cotizaciones" method="get" class="filters-container">
+    <input type="search" name="busqueda" value="@Model.Busqueda" class="search-input" placeholder="Buscar por código, cliente o descripción..." aria-label="Buscar cotizaciones" />
+    <select name="estado" class="filter-select" aria-label="Filtrar por estado">
+        <option value="">Todos los estados</option>
+        @foreach (var estado in estados)
+        {
+            if (string.Equals(Model.EstadoSeleccionado, estado.ToString(), StringComparison.OrdinalIgnoreCase))
+            {
+                <option value="@estado" selected>@estado</option>
+            }
+            else
+            {
+                <option value="@estado">@estado</option>
+            }
+        }
+    </select>
+    <button type="submit" class="btn-filter">Buscar / Filtrar</button>
+    <a asp-controller="Cotizaciones" asp-action="Cotizaciones" class="btn-clear">Limpiar filtros</a>
+</form>
+
+<div class="table-card">
+    <h3 class="table-section-title">Cotizaciones registradas (@Model.Cotizaciones.Count)</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Cliente</th>
+                <th>Servicio</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th style="text-align:center">Estado</th>
+                <th style="text-align:right">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Cotizaciones.Count == 0)
+            {
+                <tr><td colspan="7" class="empty-row">No se encontraron cotizaciones con los filtros seleccionados.</td></tr>
+            }
+            else
+            {
+                @foreach (var cotizacion in Model.Cotizaciones)
+                {
+                    var badgeCss = cotizacion.Estado switch
+                    {
+                        EstadoCotizacion.Aceptada => "badge-green",
+                        EstadoCotizacion.Rechazada => "badge-red",
+                        _ => "badge-blue"
+                    };
+                    <tr>
+                        <td><strong>@cotizacion.CodigoCotizacion</strong></td>
+                        <td>@cotizacion.Cliente?.Nombre</td>
+                        <td>@cotizacion.Servicio?.NombreServicio</td>
+                        <td>@cotizacion.FechaCotizacion.ToString("dd/MM/yyyy")</td>
+                        <td><strong>@cotizacion.TotalCotizacion.ToString("C2", System.Globalization.CultureInfo.GetCultureInfo("en-US"))</strong></td>
+                        <td style="text-align:center"><span class="badge @badgeCss">@cotizacion.Estado</span></td>
+                        <td style="text-align:right; white-space:nowrap">
+                            <a asp-controller="Cotizaciones" asp-action="EditarCotizacion" asp-route-id="@cotizacion.IdCotizacion" class="action-link">Editar</a>
+                            @if (cotizacion.Estado == EstadoCotizacion.Aceptada)
+                            {
+                                <a asp-controller="Ordenes" asp-action="CrearDesdeCotizacion" asp-route-id="@cotizacion.IdCotizacion" class="action-link">Generar orden</a>
+                            }
+                            <form asp-controller="Cotizaciones" asp-action="EliminarCotizacion" asp-route-id="@cotizacion.IdCotizacion" method="post" style="display:inline" onsubmit="return confirm('¿Seguro que deseas eliminar esta cotización?');">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="delete-button">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
