@@ -1,0 +1,116 @@
+is_global = true
+build_property.TargetFramework = net10.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v10.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EntryPointFilePath = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = DAS_Proyecto
+build_property.RootNamespace = DAS_Proyecto
+build_property.ProjectDir = C:\Users\samue\Desktop\Universidad Ciclo II 2026\DAS Proyecto\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 10.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\samue\Desktop\Universidad Ciclo II 2026\DAS Proyecto
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 10.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Clientes/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcQ3JlYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Clientes/Detalle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcRGV0YWxsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Clientes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Cotizaciones/AgregarCotizacion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ290aXphY2lvbmVzXEFncmVnYXJDb3RpemFjaW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Cotizaciones/Cotizaciones.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ290aXphY2lvbmVzXENvdGl6YWNpb25lcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Cotizaciones/EditarCotizacion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ290aXphY2lvbmVzXEVkaXRhckNvdGl6YWNpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Home/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Inventario/EditarMaterial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50YXJpb1xFZGl0YXJNYXRlcmlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Inventario/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50YXJpb1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Inventario/Nuevo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50YXJpb1xOdWV2by5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Ordenes/Detalle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5lc1xEZXRhbGxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Ordenes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5lc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Pagos/DetallesPago.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb3NcRGV0YWxsZXNQYWdvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Pagos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Pagos/RegistrarPago.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb3NcUmVnaXN0cmFyUGFnby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/Ventas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/samue/Desktop/Universidad Ciclo II 2026/DAS Proyecto/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

@@ -1,0 +1,193 @@
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .header-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+
+    .header-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: #111827;
+        line-height: 1.2;
+    }
+
+    .page-subtitle {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    .btn-primary-orange {
+        background-color: #f59e0b;
+        color: #ffffff !important;
+        padding: 0.65rem 1.25rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.875rem;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+        white-space: nowrap;
+        transition: background-color 0.2s;
+    }
+
+    .btn-primary-orange:hover {
+        background-color: #d97706;
+    }
+
+    .search-box {
+        width: 100%;
+        max-width: 320px;
+        padding: 0.65rem 1rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        margin-bottom: 1.5rem;
+        outline: none;
+        background-color: #ffffff;
+    }
+
+    .search-box:focus {
+        border-color: #f59e0b;
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+    }
+
+    .card-panel {
+        background-color: #ffffff;
+        border-radius: 0.75rem;
+        padding: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e5e7eb;
+    }
+
+    .card-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #111827;
+    }
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.875rem;
+    }
+
+    .data-table th {
+        padding: 0.75rem 1rem;
+        font-weight: 700;
+        color: #111827;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .data-table td {
+        padding: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+        color: #374151;
+    }
+
+    .data-table tr:hover td {
+        background-color: #fafafa;
+    }
+
+    .action-links a {
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .action-links a:hover {
+        text-decoration: underline;
+    }
+
+    .action-links span {
+        color: #9ca3af;
+        margin: 0 0.35rem;
+    }
+</style>
+
+<div class="header-flex">
+    <div class="header-text">
+        <h1 class="page-title">Gestión de clientes</h1>
+        <p class="page-subtitle">Administra la información de los clientes de Rótulos Ranibal.</p>
+    </div>
+    <a asp-controller="Clientes" asp-action="Crear" class="btn-primary-orange">+ Nuevo cliente</a>
+</div>
+
+<input type="text" class="search-box" placeholder="Buscar por nombre o teléfono..." />
+
+<div class="card-panel">
+    <h2 class="card-title">Listado de clientes</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Cliente</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th style="text-align: right;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>CL-001</strong></td>
+                <td>Comercial ABC</td>
+                <td>7000-1234</td>
+                <td>contacto@ejemplo.com</td>
+                <td class="action-links" style="text-align: right;">
+                    <a asp-controller="Clientes" asp-action="Detalle" asp-route-id="CL-001" class="btn-link">Ver detalles</a>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>CL-002</strong></td>
+                <td>Cliente Ejemplo</td>
+                <td>7100-5678</td>
+                <td>ventas@ejemplo.com</td>
+                <td class="action-links" style="text-align: right;">
+                    <a asp-controller="Clientes" asp-action="Detalle" asp-route-id="CL-002" class="btn-link">Ver detalles</a>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>CL-003</strong></td>
+                <td>Negocio XYZ</td>
+                <td>7200-9012</td>
+                <td>cliente@ejemplo.com</td>
+                <td class="action-links" style="text-align: right;">
+                    <a asp-controller="Clientes" asp-action="Detalle" asp-route-id="CL-003" class="btn-link">Ver detalles</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@if (TempData["MensajeExito"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            mostrarNotificacion('@TempData["MensajeExito"]');
+        });
+    </script>
+}
+</div>

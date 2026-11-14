@@ -1,10 +1,17 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Integracion_Fase3_Corregida",
-    "\\Integracion_Fase3_Corregida\\Views",
-    "\\Integracion_Fase3_Corregida\\Views\\Ordenes"
+    "\\Controllers",
+    "\\Views",
+    "\\Views\\Clientes",
+    "\\Views\\Cotizaciones",
+    "\\Views\\Home",
+    "\\Views\\Inventario",
+    "\\Views\\Ordenes",
+    "\\Views\\Shared",
+    "\\wwwroot",
+    "\\wwwroot\\css"
   ],
-  "SelectedNode": "\\Integracion_Fase3_Corregida\\Views\\Ordenes\\Detalle.cshtml",
+  "SelectedNode": "\\Views\\Inventario\\Nuevo.cshtml",
   "PreviewInSolutionExplorer": false
 }

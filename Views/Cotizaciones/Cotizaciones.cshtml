@@ -1,0 +1,248 @@
+@{
+    ViewData["Title"] = "Gestión de cotizaciones";
+}
+
+@section Styles {
+    <style>
+        .cotizaciones-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #111827;
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+
+        .page-subtitle {
+            color: #4b5563;
+            font-size: 0.875rem;
+        }
+
+        .btn-primary-orange {
+            background-color: #f59e0b;
+            color: #ffffff !important;
+            border: none;
+            padding: 0.65rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: inline-block;
+            text-align: center;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            white-space: nowrap;
+        }
+
+        .btn-primary-orange:hover {
+            background-color: #d97706;
+        }
+
+        .filters-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 380px;
+            padding: 0.65rem 1rem;
+            background-color: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: #374151;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+        }
+
+        .filter-select {
+            width: 100%;
+            max-width: 180px;
+            padding: 0.65rem 1rem;
+            background-color: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: #374151;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .table-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+            padding: 1.5rem;
+        }
+
+        .table-section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.875rem;
+        }
+
+        .data-table th {
+            color: #4b5563;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            background-color: transparent;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            color: #1f2937;
+            border-bottom: 1px solid #f3f4f6;
+            font-weight: 500;
+            vertical-align: middle;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .badge-blue {
+            background-color: #93c5fd;
+            color: #1e3a8a;
+        }
+
+        .badge-green {
+            background-color: #86efac;
+            color: #14532d;
+        }
+
+        .badge-red {
+            background-color: #fca5a5;
+            color: #7f1d1d;
+        }
+
+        .action-link {
+            color: #2563eb;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .action-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+}
+
+<div class="cotizaciones-header">
+    <div>
+        <h1 class="page-title">Gestión de cotizaciones</h1>
+        <p class="page-subtitle">Prepara presupuestos y consulta las cotizaciones de los clientes.</p>
+    </div>
+    <a asp-controller="Home" asp-action="AgregarCotizacion" class="btn-primary-orange">+ Nueva cotización</a>
+</div>
+
+<div class="filters-container">
+    <input type="text" class="search-input" placeholder="Buscar cotización o cliente..." />
+    
+    <select class="filter-select">
+        <option value="">Todos los estados</option>
+        <option value="proceso">En proceso</option>
+        <option value="listo">Listo</option>
+        <option value="pendiente">Pendiente</option>
+    </select>
+</div>
+
+<div class="table-card">
+    <h3 class="table-section-title">Cotizaciones registradas</h3>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th style="text-align: center;">Estado</th>
+                <th style="text-align: right;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>COT-001</strong></td>
+                <td>Comercial ABC</td>
+                <td>10/10/2026</td>
+                <td><strong>$350.00</strong></td>
+                <td style="text-align: center;">
+                    <span class="badge badge-blue">En proceso</span>
+                </td>
+                <td style="text-align: right;">
+                    <a asp-controller="Cotizaciones" asp-action="EditarCotizacion" asp-route-id="COT-001" class="action-link">Editar</a>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>COT-002</strong></td>
+                <td>Negocio XYZ</td>
+                <td>11/10/2026</td>
+                <td><strong>$180.00</strong></td>
+                <td style="text-align: center;">
+                    <span class="badge badge-green">Listo</span>
+                </td>
+                <td style="text-align: right;">
+                    <a asp-controller="Cotizaciones" asp-action="EditarCotizacion" asp-route-id="COT-002" class="action-link">Editar</a>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>COT-003</strong></td>
+                <td>Cliente de prueba</td>
+                <td>12/10/2026</td>
+                <td><strong>$95.00</strong></td>
+                <td style="text-align: center;">
+                    <span class="badge badge-red">Pendiente</span>
+                </td>
+                <td style="text-align: right;">
+                    <a asp-controller="Cotizaciones" asp-action="EditarCotizacion" asp-route-id="COT-003" class="action-link">Editar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@if (TempData["MensajeExito"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof mostrarNotificacion === 'function') {
+                mostrarNotificacion('@TempData["MensajeExito"]');
+            }
+        });
+    </script>
+}

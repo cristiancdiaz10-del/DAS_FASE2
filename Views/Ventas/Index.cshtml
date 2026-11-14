@@ -1,0 +1,308 @@
+﻿@{
+    ViewData["Title"] = "Ventas e informes";
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+  
+    .header-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .header-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: #111827;
+        line-height: 1.2;
+    }
+
+    .page-subtitle {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    .filter-select {
+        background-color: #ffffff;
+        color: #111827;
+        border: 1px solid #e5e7eb;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        outline: none;
+        cursor: pointer;
+    }
+
+   
+    .metrics-top-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .metric-card {
+        background-color: #ffffff;
+        border-radius: 0.75rem;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        border: 1px solid #e5e7eb;
+    }
+
+    .metric-title {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 0.5rem;
+    }
+
+    .metric-value {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #111827;
+        margin-bottom: 0.25rem;
+    }
+
+    .metric-desc {
+        font-size: 0.75rem;
+        color: #6b7280;
+    }
+
+    
+    .bottom-dashboard-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 0.6fr;
+        gap: 1.5rem;
+        align-items: start;
+    }
+
+   
+    .chart-panel {
+        background-color: #ffffff;
+        border-radius: 0.75rem;
+        padding: 2rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        border: 1px solid #e5e7eb;
+    }
+
+    .chart-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 2rem;
+    }
+
+
+    .bar-chart-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-end;
+        height: 220px;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+        position: relative;
+    }
+
+    .chart-y-labels {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 0.7rem;
+        color: #9ca3af;
+    }
+
+    .bar-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        height: 100%;
+        justify-content: flex-end;
+    }
+
+    .bar {
+        width: 28px;
+        background-color: #f59e0b;
+        border-radius: 4px 4px 0 0;
+        transition: height 0.3s;
+    }
+
+    .bar-label {
+        font-size: 0.75rem;
+        color: #6b7280;
+        font-weight: 500;
+        margin-top: 0.5rem;
+    }
+
+   
+    .summary-panel {
+        background-color: #ffffff;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        border: 1px solid #e5e7eb;
+    }
+
+    .summary-header-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #111827;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .status-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.25rem;
+        border-radius: 0.5rem;
+        font-weight: 700;
+        font-size: 0.875rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .status-card:last-child {
+        margin-bottom: 0;
+    }
+
+  
+    .card-blue {
+        background-color: #93c5fd;
+        color: #1e3a8a;
+    }
+
+    .card-green {
+        background-color: #86efac;
+        color: #14532d;
+    }
+
+    .card-orange {
+        background-color: #fbbf24;
+        color: #78350f;
+    }
+
+    .card-red {
+        background-color: #fca5a5;
+        color: #7f1d1d;
+    }
+
+    .status-count {
+        font-size: 1.25rem;
+        font-weight: 800;
+    }
+</style>
+
+
+<div class="header-flex">
+    <div class="header-text">
+        <h1 class="page-title">Ventas e informes</h1>
+        <p class="page-subtitle">Consulta los ingresos registrados y el volumen de órdenes del negocio.</p>
+    </div>
+    
+   
+    <select class="filter-select">
+        <option value="10-2026">Octubre 2026</option>
+        <option value="09-2026">Septiembre 2026</option>
+        <option value="08-2026">Agosto 2026</option>
+    </select>
+</div>
+
+
+<div class="metrics-top-grid">
+    <div class="metric-card">
+        <div class="metric-title">Ingresos del mes</div>
+        <div class="metric-value">$4,850.00</div>
+        <div class="metric-desc">Ingresos registrados en el período</div>
+    </div>
+    <div class="metric-card">
+        <div class="metric-title">Órdenes registradas</div>
+        <div class="metric-value">32</div>
+        <div class="metric-desc">Cantidad de órdenes del período</div>
+    </div>
+</div>
+
+
+<div class="bottom-dashboard-grid">
+    
+   
+    <div class="chart-panel">
+        <h3 class="chart-title">Ingresos por semana</h3>
+        
+        <div class="bar-chart-container">
+            
+            <div class="chart-y-labels">
+                <span>$ 1500</span>
+                <span>$ 100</span>
+                <span>$ 500</span>
+                <span>$ 0</span>
+            </div>
+
+            
+            <div class="bar-group">
+                <div class="bar" style="height: 45%;"></div>
+                <span class="bar-label">Semana 1</span>
+            </div>
+            <div class="bar-group">
+                <div class="bar" style="height: 85%;"></div>
+                <span class="bar-label">Semana 2</span>
+            </div>
+       
+            <div class="bar-group">
+                <div class="bar" style="height: 60%;"></div>
+                <span class="bar-label">Semana 3</span>
+            </div>
+            
+            <div class="bar-group">
+                <div class="bar" style="height: 100%;"></div>
+                <span class="bar-label">Semana 4</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary-panel">
+        <h3 class="summary-header-title">Resumen de órdenes</h3>
+
+        <div class="status-card card-blue">
+            <span>Órdenes registradas</span>
+            <span class="status-count">32</span>
+        </div>
+
+        <div class="status-card card-green">
+            <span>Órdenes Entregadas</span>
+            <span class="status-count">20</span>
+        </div>
+
+        <div class="status-card card-orange">
+            <span>Órdenes en proceso</span>
+            <span class="status-count">8</span>
+        </div>
+
+        <div class="status-card card-red">
+            <span>Órdenes Pendientes</span>
+            <span class="status-count">4</span>
+        </div>
+    </div>
+
+</div>
