@@ -1,0 +1,40 @@
+@model IEnumerable<DAS_FASE2.Models.Servicio>
+
+@{
+    ViewData["Title"] = "Gestión de Servicios";
+}
+
+<div class="container mt-4">
+    <h2>Listado de Servicios</h2>
+    <p>
+        <a asp-action="Create" class="btn btn-primary mb-3">Nuevo Servicio</a>
+    </p>
+
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre del Servicio</th>
+                <th>Descripción</th>
+                <th>Precio Base</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>@item.NombreServicio</td>
+                    <td>@item.Descripcion</td>
+                    <td>$@item.PrecioBase.ToString("0.00")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.IdServicio" class="btn btn-sm btn-warning">Editar</a>
+                        
+                        <form asp-action="Delete" asp-route-id="@item.IdServicio" method="post" style="display:inline;" onsubmit="return confirm('¿Estás seguro de eliminar este servicio?');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
