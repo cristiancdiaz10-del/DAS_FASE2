@@ -1,2 +1,8 @@
+# Visual Studio / C# ignore rules
 .vs/
-.vs/
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
