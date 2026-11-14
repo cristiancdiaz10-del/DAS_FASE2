@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace DAS_FASE2.ViewModels
+namespace DAS_Proyecto.ViewModels
 {
     public class ClienteViewModel
     {

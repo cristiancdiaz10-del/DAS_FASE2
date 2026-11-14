@@ -1,9 +1,9 @@
-﻿using DAS_FASE2.Data;
-using DAS_FASE2.Models;
-using DAS_FASE2.Repositories.Interfaces;
+﻿using DAS_Proyecto.Data;
+using DAS_Proyecto.Models;
+using DAS_Proyecto.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAS_FASE2.Repositories.Implementations
+namespace DAS_Proyecto.Repositories.Implementations
 {
     public class UsuarioRepository : IUsuarioRepository
     {

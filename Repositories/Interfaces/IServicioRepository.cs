@@ -1,6 +1,6 @@
-﻿using DAS_FASE2.Models;
+﻿using DAS_Proyecto.Models;
 
-namespace DAS_FASE2.Repositories.Interfaces
+namespace DAS_Proyecto.Repositories.Interfaces
 {
     public interface IServicioRepository
     {

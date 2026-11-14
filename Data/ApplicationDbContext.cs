@@ -7,12 +7,12 @@ namespace DAS_Proyecto.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        //public DbSet<Cliente> Clientes { get; set; }
-        //public DbSet<Usuario> Usuarios { get; set; }
-        //public DbSet<Servicio> Servicios { get; set; }
-        //public DbSet<Cotizacion> Cotizaciones { get; set; }
-        //public DbSet<OrdenTrabajo> OrdenesTrabajo { get; set; }
-        //public DbSet<DetalleOrdenMaterial> DetalleOrdenMateriales { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Servicio> Servicios { get; set; }
+        public DbSet<Cotizacion> Cotizaciones { get; set; }
+        public DbSet<OrdenTrabajo> OrdenesTrabajo { get; set; }
+        public DbSet<DetalleOrdenMaterial> DetalleOrdenMateriales { get; set; }
         public DbSet<Material> Materiales { get; set; }
         public DbSet<Pago> Pagos { get; set; }
 

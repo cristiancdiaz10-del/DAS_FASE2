@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DAS_FASE2.Models
+namespace DAS_Proyecto.Models
 {
     public enum RolUsuario
     {

@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using DAS_FASE2.Models;
+using DAS_Proyecto.Models;
 
 namespace DAS_Proyecto.Models
 {

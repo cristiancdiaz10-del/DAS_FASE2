@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using DAS_FASE2.Models;
+using DAS_Proyecto.Models;
 
-namespace DAS_FASE2.ViewModels
+namespace DAS_Proyecto.ViewModels
 {
     public class UsuarioViewModel
     {

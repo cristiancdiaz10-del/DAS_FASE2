@@ -1,4 +1,22 @@
+using DAS_Proyecto.Data;
+using DAS_Proyecto.Repositories.Implementations;
+using DAS_Proyecto.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// ==========================================
+// 1. REGISTRAR EL DbContext (Base de datos)
+// ==========================================
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// ==========================================
+// 2. REGISTRAR REPOSITORIOS
+// ==========================================
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IServicioRepository, ServicioRepository>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 // Agregar servicios de MVC
 builder.Services.AddControllersWithViews();
@@ -7,7 +25,6 @@ var app = builder.Build();
 
 // Habilitar archivos estáticos (wwwroot)
 app.UseStaticFiles();
-
 app.UseRouting();
 app.UseAuthorization();
 

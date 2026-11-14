@@ -22,6 +22,144 @@ namespace DAS_Proyecto.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("DAS_Proyecto.Models.Cliente", b =>
+                {
+                    b.Property<int>("IdCliente")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCliente"));
+
+                    b.Property<string>("Correo")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Direccion")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Empresa")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Observaciones")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("IdCliente");
+
+                    b.ToTable("Clientes");
+                });
+
+            modelBuilder.Entity("DAS_Proyecto.Models.Cotizacion", b =>
+                {
+                    b.Property<int>("IdCotizacion")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCotizacion"));
+
+                    b.Property<int>("ClienteIdCliente")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CodigoCotizacion")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<decimal>("CostoManoObra")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("CostoMateriales")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("DescripcionTrabajo")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("Estado")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("FechaCotizacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdCliente")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdServicio")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServicioIdServicio")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalCotizacion")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("UsuarioIdUsuario")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdCotizacion");
+
+                    b.HasIndex("ClienteIdCliente");
+
+                    b.HasIndex("ServicioIdServicio");
+
+                    b.HasIndex("UsuarioIdUsuario");
+
+                    b.ToTable("Cotizaciones");
+                });
+
+            modelBuilder.Entity("DAS_Proyecto.Models.DetalleOrdenMaterial", b =>
+                {
+                    b.Property<int>("IdDetalleOrdenMaterial")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDetalleOrdenMaterial"));
+
+                    b.Property<decimal>("CantidadUtilizada")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("IdMaterial")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdOrdenTrabajo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaterialIdMaterial")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrdenTrabajoIdOrdenTrabajo")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("PrecioUnitario")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Subtotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("IdDetalleOrdenMaterial");
+
+                    b.HasIndex("MaterialIdMaterial");
+
+                    b.HasIndex("OrdenTrabajoIdOrdenTrabajo");
+
+                    b.ToTable("DetalleOrdenMateriales");
+                });
+
             modelBuilder.Entity("DAS_Proyecto.Models.Material", b =>
                 {
                     b.Property<int>("IdMaterial")
@@ -56,6 +194,47 @@ namespace DAS_Proyecto.Migrations
                     b.ToTable("Materiales");
                 });
 
+            modelBuilder.Entity("DAS_Proyecto.Models.OrdenTrabajo", b =>
+                {
+                    b.Property<int>("IdOrdenTrabajo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdOrdenTrabajo"));
+
+                    b.Property<decimal>("AnticipoRequerido")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("CodigoOrden")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int>("CotizacionIdCotizacion")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Estado")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("FechaEntregaEstimada")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FechaEntregaReal")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaOrden")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdCotizacion")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdOrdenTrabajo");
+
+                    b.HasIndex("CotizacionIdCotizacion");
+
+                    b.ToTable("OrdenesTrabajo");
+                });
+
             modelBuilder.Entity("DAS_Proyecto.Models.Pago", b =>
                 {
                     b.Property<int>("IdPago")
@@ -84,6 +263,118 @@ namespace DAS_Proyecto.Migrations
                     b.HasKey("IdPago");
 
                     b.ToTable("Pagos");
+                });
+
+            modelBuilder.Entity("DAS_Proyecto.Models.Servicio", b =>
+                {
+                    b.Property<int>("IdServicio")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdServicio"));
+
+                    b.Property<string>("Descripcion")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("NombreServicio")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<decimal>("PrecioBase")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("IdServicio");
+
+                    b.ToTable("Servicios");
+                });
+
+            modelBuilder.Entity("DAS_Proyecto.Models.Usuario", b =>
+                {
+                    b.Property<int>("IdUsuario")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUsuario"));
+
+                    b.Property<string>("Correo")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rol")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdUsuario");
+
+                    b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("DAS_Proyecto.Models.Cotizacion", b =>
+                {
+                    b.HasOne("DAS_Proyecto.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteIdCliente")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DAS_Proyecto.Models.Servicio", "Servicio")
+                        .WithMany()
+                        .HasForeignKey("ServicioIdServicio")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DAS_Proyecto.Models.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioIdUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Servicio");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("DAS_Proyecto.Models.DetalleOrdenMaterial", b =>
+                {
+                    b.HasOne("DAS_Proyecto.Models.Material", "Material")
+                        .WithMany()
+                        .HasForeignKey("MaterialIdMaterial")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DAS_Proyecto.Models.OrdenTrabajo", "OrdenTrabajo")
+                        .WithMany()
+                        .HasForeignKey("OrdenTrabajoIdOrdenTrabajo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Material");
+
+                    b.Navigation("OrdenTrabajo");
+                });
+
+            modelBuilder.Entity("DAS_Proyecto.Models.OrdenTrabajo", b =>
+                {
+                    b.HasOne("DAS_Proyecto.Models.Cotizacion", "Cotizacion")
+                        .WithMany()
+                        .HasForeignKey("CotizacionIdCotizacion")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cotizacion");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DAS_FASE2.Repositories.Interfaces;
-using DAS_FASE2.Models;
-using DAS_FASE2.ViewModels;
+using DAS_Proyecto.Repositories.Interfaces;
+using DAS_Proyecto.Models;
+using DAS_Proyecto.ViewModels;
 
-namespace DAS_FASE2.Controllers
+namespace DAS_Proyecto.Controllers
 {
     public class ServiciosController : Controller
     {
